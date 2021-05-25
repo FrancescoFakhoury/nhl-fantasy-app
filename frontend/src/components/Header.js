@@ -1,20 +1,17 @@
-import React, {useContext} from "react";
+import React from "react";
 import styled from "styled-components";
-import {Context} from "./Context"
+import LogoutButton from "./LogIn/LogoutButton"
+import {useAuth0} from "@auth0/auth0-react"
 
 const Header = () => {
 
-  const {currentUser, setCurrentUser} = useContext(Context)
+  const {isAuthenticated} = useAuth0();
 
   const handleScrollDown = () => {
     window.scrollTo(0, document.body.scrollHeight);
   };
 
-  const handleLogOut = () => {
-    setCurrentUser(null);
-  };
-
-  if (currentUser === null) {
+  if (!isAuthenticated) {
     return (
       <Wrapper>
         <MyStyleButton onClick={handleScrollDown}>Log In</MyStyleButton>
@@ -24,7 +21,7 @@ const Header = () => {
     return (
       <>
       <MainPageWrapper>
-        <MyStyleButton onClick={handleLogOut}>Log Out</MyStyleButton>
+        <LogoutButton />
       </MainPageWrapper>
         <Divider />
         </>

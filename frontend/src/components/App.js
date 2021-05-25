@@ -1,23 +1,23 @@
-import React, {useContext } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import SignIn from "./SignIn";
 import Header from "./Header";
-import {Context} from "./Context"
 import Homepage from "./Homepage"
+import {useAuth0} from "@auth0/auth0-react"
 
 
 function App() {
   document.body.style = "background: RGB(255, 138, 0)";
-  const {currentUser} = useContext(Context)
+  const {isAuthenticated} = useAuth0();
 
   return (
     <BrowserRouter>
       <GlobalStyles />
       <Header  />
       <Switch>
-        {currentUser === null ? (
+        {!isAuthenticated ? (
           <SignIn  />
         ) : (
           <Homepage />

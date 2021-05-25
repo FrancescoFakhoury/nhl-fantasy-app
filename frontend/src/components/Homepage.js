@@ -8,9 +8,9 @@ const Homepage = () => {
     console.log(teamsArr)
 
     return (
-        <>
+        <Text>
         hi
-        </>
+        </Text>
     )
 }
 

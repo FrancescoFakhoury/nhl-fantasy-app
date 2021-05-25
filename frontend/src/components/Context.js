@@ -3,7 +3,6 @@ import React, { createContext, useState, useEffect } from "react";
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
@@ -18,8 +17,6 @@ export const ContextProvider = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        currentUser,
-        setCurrentUser,
         teams,
         setTeams,
       }}
