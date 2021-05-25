@@ -1,22 +1,18 @@
-import React, {useContext} from "react";
-import styled from "styled-components"
-import {Context} from "./Context" 
+import React from "react";
+import styled from "styled-components";
+import Team from "./Team"
+
 const Homepage = () => {
-    const {teams} = useContext(Context)
+  return (
+    <Wrapper>
+      <Team />
+    </Wrapper>
+  );
+};
 
-    const teamsArr = Object.values(teams.teams);
-    console.log(teamsArr)
-
-    return (
-        <Text>
-        hi
-        </Text>
-    )
-}
-
-const Text = styled.p`
-  font-size: 40px;
-  font-family: var(--font-family);
-`;
+const Wrapper= styled.div`
+display: flex;
+gap: 2rem;
+`
 
 export default Homepage;
