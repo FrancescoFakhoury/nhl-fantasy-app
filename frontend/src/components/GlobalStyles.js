@@ -8,5 +8,4 @@ export default createGlobalStyle`
     --font-family: 'Nanum Gothic', sans-serif;
 }
 
-
 `

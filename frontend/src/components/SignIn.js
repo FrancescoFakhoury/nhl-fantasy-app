@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import { Context } from "./Context";
 
-const SignIn = ({currentUser, setCurrentUser}) => {
+const SignIn = () => {
+  const { setCurrentUser } = useContext(Context);
+
   const handleLogIn = () => {
-    setCurrentUser(!null)
-  }
+    setCurrentUser(!null);
+  };
   return (
-      <Wrapper>
+    <Wrapper>
       <Title>BenchMates</Title>
-        <SubText>Become ONE with the fantasy Gods.</SubText>
-        <StyledForm>
-          <SubText>Get Started</SubText>
-          <StyledInput type="text" placeholder="Username"></StyledInput>
-          <StyledInput type="password" placeholder="Password"></StyledInput>
-          <StyledButton onClick={handleLogIn}> Log In</StyledButton>
-        </StyledForm>
-      </Wrapper>
+      <SubText>Become ONE with the fantasy Gods.</SubText>
+      <StyledForm>
+        <SubText>Get Started</SubText>
+        <StyledInput type="text" placeholder="Username"></StyledInput>
+        <StyledInput type="password" placeholder="Password"></StyledInput>
+        <StyledButton onClick={handleLogIn}> Log In</StyledButton>
+      </StyledForm>
+    </Wrapper>
   );
 };
 
@@ -63,7 +66,7 @@ const StyledButton = styled.button`
   padding: 0px 20px;
   /* background: linear-gradient(to right, gold, darkorange); */
   /* background: linear-gradient(to right, black, white); */
-  background-color: white; 
+  background-color: white;
   color: black;
   text-align: center;
   line-height: 50px;

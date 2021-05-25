@@ -1,7 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import {Context} from "./Context"
 
-const Header = ({ currentUser, setCurrentUser }) => {
+const Header = () => {
+
+  const {currentUser, setCurrentUser} = useContext(Context)
+
   const handleScrollDown = () => {
     window.scrollTo(0, document.body.scrollHeight);
   };
@@ -18,9 +22,12 @@ const Header = ({ currentUser, setCurrentUser }) => {
     );
   } else {
     return (
+      <>
       <MainPageWrapper>
         <MyStyleButton onClick={handleLogOut}>Log Out</MyStyleButton>
       </MainPageWrapper>
+        <Divider />
+        </>
     );
   }
 };
@@ -51,6 +58,10 @@ const MyStyleButton = styled.button`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+`;
+
+const Divider = styled.hr`
+  border: 1px solid black;
 `;
 
 export default Header;
