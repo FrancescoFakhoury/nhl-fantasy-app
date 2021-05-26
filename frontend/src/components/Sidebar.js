@@ -9,17 +9,21 @@ const Sidebar = () => {
   return (
     <Wrapper>
       <NavDiv>
-        <BsPersonFill size="3rem" />
+        <BsPersonFill size="2rem" color="white" />
         <StyledNavLink to="/" exact>
           Profile
         </StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <RiTeamFill size="3rem" />
+        <BsPersonFill size="2rem" color="white" />
+        <StyledNavLink to="/players">Players</StyledNavLink>
+      </NavDiv>
+      <NavDiv>
+        <RiTeamFill size="2rem" color="white" />
         <StyledNavLink to="/team">Your Team</StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <FaHockeyPuck size="3rem" />
+        <FaHockeyPuck size="2rem" color="white" />
         <StyledNavLink to="/nhl-teams">NHL Teams</StyledNavLink>
       </NavDiv>
     </Wrapper>
@@ -30,10 +34,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 20vw;
+  width: 15vw;
   align-items: baseline;
   padding-left: 2rem;
-  border: solid black 2px;
+  background-color: var(--second-grey);
+  border-radius: 10px;
 `;
 
 const NavDiv = styled.div`
@@ -48,19 +53,19 @@ const NavDiv = styled.div`
 `;
 
 const StyledNavLink = styled(NavLink)`
-  font-size: 25px;
+  font-size: 20px;
   text-decoration: none;
-  color: black;
+  color: #fff;
   font-weight: bold;
   font-family: var(--font-family);
   padding: 10px;
 
   &:hover {
-    color: black;
+    color: var(--orange)
   }
 
   &.active {
-    color: black;
+    color: var(--orange)
   }
 `;
 

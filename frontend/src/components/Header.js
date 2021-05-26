@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import LogoutButton from "./LogIn/LogoutButton"
-import {useAuth0} from "@auth0/auth0-react"
+import LogoutButton from "./LogIn/LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
+  const { isAuthenticated, user } = useAuth0();
 
-  const {isAuthenticated} = useAuth0();
+  console.log(user)
 
   const handleScrollDown = () => {
     window.scrollTo(0, document.body.scrollHeight);
@@ -19,12 +20,11 @@ const Header = () => {
     );
   } else {
     return (
-      <>
       <MainPageWrapper>
+        <Text>Welcome {user.nickname} </Text>
+        <Title>BenchMates</Title>
         <LogoutButton />
       </MainPageWrapper>
-        <Divider />
-        </>
     );
   }
 };
@@ -36,9 +36,24 @@ const Wrapper = styled.div`
   right: 0;
 `;
 
+const Title = styled.h1`
+  font-size: 2rem;
+  font-family: var(--font-family);
+  color: #fff;
+`;
+
 const MainPageWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: baseline;
+  background: var(--first-grey);
+  padding: 0px 10px;
+`;
+
+const Text = styled.p`
+  font-size: 25px;
+  font-family: var(--font-family);
+  color: #fff;
 `;
 
 const MyStyleButton = styled.button`
@@ -55,10 +70,6 @@ const MyStyleButton = styled.button`
   position: relative;
   overflow: hidden;
   cursor: pointer;
-`;
-
-const Divider = styled.hr`
-  border: 1px solid black;
 `;
 
 export default Header;

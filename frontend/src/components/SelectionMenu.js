@@ -10,22 +10,46 @@ const SelectionMenu = () => {
 
   return (
     <Wrapper>
+    <PlayerSelectText>Please select your players bellow:</PlayerSelectText>
+    <TeamWrapper>
       {teamsArr.map((team) => {
-        return <Text>{team.name}</Text>;
+        return <TeamNames>{team.name}</TeamNames>;
       })}
+    </TeamWrapper>
     </Wrapper>
   );
 };
 
+const PlayerSelectText =styled.div`
+font-size: 2rem;
+color: 	#FFF;
+font-family: var(--font-family);
+`
+
 const Wrapper = styled.div`
-  border: solid black 2px;
-  width: fit-content;
+display: flex;
+flex-direction: column;
+background-color: var(--grey);
+gap: 50px;
+`
+
+const TeamWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: fill-available;
   border-radius: 10px;
   padding: 10px;
 `;
-const Text = styled.p`
+const TeamNames = styled.p`
   font-size: 20px;
   font-family: var(--font-family);
+  color: #fff;
+  padding: 10px;
+
+  &:hover {
+    color: var(--orange);
+    cursor: pointer;
+  }
 `;
 
 export default SelectionMenu;

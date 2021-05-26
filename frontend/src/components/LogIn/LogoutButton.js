@@ -15,8 +15,7 @@ const MyStyleButton = styled.button`
   font-size: 25px;
   font-family: sans-serif;
   border: 1px solid darkgoldenrod;
-  border-radius: 2em;
-  text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
   box-shadow: 0px 0 0 3px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
