@@ -3,27 +3,27 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { BsPersonFill } from "react-icons/bs";
 import { RiTeamFill } from "react-icons/ri";
-import { FaHockeyPuck } from "react-icons/fa";
+import { FaHockeyPuck, FaHome } from "react-icons/fa";
 
 const Sidebar = () => {
   return (
     <Wrapper>
       <NavDiv>
-        <BsPersonFill size="2rem" color="white" />
+        <FaHome size="2rem" color="white" opacity="0.87" />
         <StyledNavLink to="/" exact>
           Profile
         </StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <BsPersonFill size="2rem" color="white" />
+        <BsPersonFill size="2rem" color="white" opacity="0.87" />
         <StyledNavLink to="/players">Players</StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <RiTeamFill size="2rem" color="white" />
+        <RiTeamFill size="2rem" color="white" opacity="0.87" />
         <StyledNavLink to="/team">Your Team</StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <FaHockeyPuck size="2rem" color="white" />
+        <FaHockeyPuck size="2rem" color="white" opacity="0.87" />
         <StyledNavLink to="/nhl-teams">NHL Teams</StyledNavLink>
       </NavDiv>
     </Wrapper>
@@ -46,6 +46,7 @@ const NavDiv = styled.div`
   gap: 5px;
   margin: 20px;
   align-items: center;
+  background-color: var(--third-grey);
 
   &:hover {
     transform: scale(1.3);
@@ -59,13 +60,14 @@ const StyledNavLink = styled(NavLink)`
   font-weight: bold;
   font-family: var(--font-family);
   padding: 10px;
+  opacity: 0.87;
 
   &:hover {
-    color: var(--orange)
+    color: var(--orange);
   }
 
   &.active {
-    color: var(--orange)
+    color: var(--orange);
   }
 `;
 

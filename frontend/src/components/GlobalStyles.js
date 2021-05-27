@@ -6,10 +6,10 @@ export default createGlobalStyle`
 :root {
     --orange: RGB(255, 138, 0);
     --font-family: 'Nanum Gothic', sans-serif;
-    --first-grey: #212121;
-    --second-grey: #424242;
-    --third-grey: #616161;
-    --fourth-grey: #757575;
+    --first-grey: #121212;
+    --second-grey: #1e1e1e;
+    --third-grey: #2e2e2e;
+    --fourth-grey: #424242;
 }
 
 html, body {
