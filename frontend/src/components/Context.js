@@ -5,7 +5,7 @@ export const Context = createContext({});
 export const ContextProvider = ({ children }) => {
   const [teams, setTeams] = useState([]);
   const [myTeam, setMyTeam] = useState([]);
-  const [test, setTest] = useState([])
+  const [singlePlayer, setSinglePlayer] = useState([])
 
   useEffect(() => {
     fetch("https://statsapi.web.nhl.com/api/v1/teams")
@@ -16,15 +16,6 @@ export const ContextProvider = ({ children }) => {
       .catch((err) => console.log("err"));
   }, []);
 
-  // useEffect(() => {
-  //   fetch("https://statsapi.web.nhl.com/api/v1/people/8476459")
-  //   .then((res) => res.json())
-  //   .then((json) => {
-  //     console.log(json)
-  //     setTest(json)
-  //   })
-  // })
-
   return (
     <Context.Provider
       value={{
@@ -32,6 +23,8 @@ export const ContextProvider = ({ children }) => {
         setTeams,
         myTeam,
         setMyTeam,
+        singlePlayer,
+        setSinglePlayer
       }}
     >
       {children}

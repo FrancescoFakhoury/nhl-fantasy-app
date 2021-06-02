@@ -1,81 +1,96 @@
 import React, { useContext, useState } from "react";
 import { Context } from "./Context";
 import styled from "styled-components";
-import Player from "./Player"
+import Player from "./Player";
 
 const SelectionMenu = () => {
   const { teams } = useContext(Context);
-  const [isTeamClicked, setIsTeamClicked] = useState(false)
-  const [specificTeam, setSpecificTeam] = useState(null)
+  const [isTeamClicked, setIsTeamClicked] = useState(false);
+  const [specificTeam, setSpecificTeam] = useState(null);
 
   const teamsArr = Object.values(teams.teams);
 
-  console.log("ginger", isTeamClicked)
-
+  
   const handleClick = (team) => {
+    console.log("ginger", isTeamClicked);
     fetch(`https://statsapi.web.nhl.com/api/v1/teams/${team.id}/roster`)
-    .then((res) => res.json())
-    .then((json) => {
-      setSpecificTeam(json.roster)
-      setIsTeamClicked(true)
-    })
-  }
+      .then((res) => res.json())
+      .then((json) => {
+        setSpecificTeam(json.roster);
+        setIsTeamClicked(true);
+      });
+  };
 
   // const previousPage = () => {
   //   setIsTeamClicked(false);
   // }
 
-  if(isTeamClicked === false) {
-  return (
-    <Wrapper>
-    <PlayerSelectText>Please select your players from the desired team bellow :</PlayerSelectText>
-    <TeamWrapper>
-      {teamsArr.map((team, index) => {
-        return <TeamNames key={index} onClick={() => {handleClick(team)}}>{team.name}</TeamNames>;
-      })}
-    </TeamWrapper>
-    </Wrapper>
-  );
-} else {
-  return (
-  <PlayerWrapper>
-    <PlayerSelectText>Please select your players from the desired team bellow :</PlayerSelectText>
-    <TeamWrapper>
-      {specificTeam.map((player, index) => {
-        return <Player player={player} key={index} />
-      })}
-    </TeamWrapper>
-    <button onClick={() => setIsTeamClicked(false)}>Previous Page</button>
-    </PlayerWrapper>
-  );
-};
+  if (isTeamClicked === false) {
+    return (
+      <Wrapper>
+        <PlayerSelectText>
+          Please select your players from the desired team bellow :
+        </PlayerSelectText>
+        <TeamWrapper>
+          {teamsArr.map((team, index) => {
+            return (
+              <TeamNames
+                key={index}
+                onClick={() => {
+                  handleClick(team);
+                }}
+              >
+                {team.name}
+              </TeamNames>
+            );
+          })}
+        </TeamWrapper>
+      </Wrapper>
+    );
+  } else {
+    return (
+      <PlayerWrapper>
+        <PlayerSelectText>
+          Please select your players from the desired team bellow :
+        </PlayerSelectText>
+        <TeamWrapper>
+          {specificTeam.map((player, index) => {
+            return <Player player={player} key={index} />;
+          })}
+        </TeamWrapper>
+        <button onClick={() => setIsTeamClicked(false)}>Previous Page</button>
+      </PlayerWrapper>
+    );
+  }
 };
 
-const PlayerSelectText =styled.div`
-font-size: 1.6rem;
-color: 	black;
-font-family: var(--font-family);
-opacity: 0.87;
-`
+const PlayerSelectText = styled.div`
+  font-size: 1.6rem;
+  color: black;
+  font-family: var(--font-family);
+  opacity: 0.87;
+  text-align: center;
+  padding-top: 20px;
+`;
 
 const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-gap: 50px;
-background-color: var(--first-card);
-padding: 20px;
-border-radius: 14px;
-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: var(--first-card);
+  padding: 20px;
+  border-radius: 14px;
+  height: fit-content;
 `;
 
 const PlayerWrapper = styled.div`
-display: flex;
-flex-direction: column;
-gap: 50px;
-background-color: var(--first-card);
-padding: 20px;
-border-radius: 14px;
-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: var(--first-card);
+  padding: 20px;
+  border-radius: 14px;
+  height: fit-content;
 `;
 
 const TeamWrapper = styled.div`
@@ -83,7 +98,6 @@ const TeamWrapper = styled.div`
   flex-wrap: wrap;
   width: fill-available;
   border-radius: 10px;
-  
 `;
 const TeamNames = styled.button`
   font-size: 20px;

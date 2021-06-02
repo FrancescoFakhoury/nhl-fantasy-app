@@ -10,9 +10,10 @@ import Team from "./Team";
 import NHLTeams from "./NHLTeams";
 import SelectionMenu from "./SelectionMenu";
 import Profile from "./Profile";
+import HowToPlay from "./HowToPlay"
 
 function App() {
-  document.body.style = "background: RGB(255, 138, 0)";
+  document.body.style = "background: linear-gradient(to right, purple, turquoise)";
   
   const { isAuthenticated } = useAuth0();
 
@@ -21,7 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyles />
-      <Color>
+      <Wrap>
         <Header />
         <Switch>
           {!isAuthenticated ? (
@@ -44,18 +45,22 @@ function App() {
                 <Route path="/nhl-teams">
                   <NHLTeams />
                 </Route>
+                <Route path="/how-to-play">
+                  <HowToPlay />
+                </Route>
               </ContentWrapper>
             </Wrapper>
           )}
         </Switch>
-      </Color>
+      </Wrap>
     </BrowserRouter>
   );
 }
 
-const Color = styled.div`
+const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from "styled-components"
-import picture from "../assets/picture.png"
 
 const Profile = () => {
     return (

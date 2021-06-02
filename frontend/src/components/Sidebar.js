@@ -26,6 +26,9 @@ const Sidebar = () => {
         <FaHockeyPuck size="2rem" color="white" opacity="0.87" />
         <StyledNavLink to="/nhl-teams">NHL Teams</StyledNavLink>
       </NavDiv>
+      <NavDiv>
+        <StyledNavLink to="/how-to-play">How to Play</StyledNavLink>
+      </NavDiv>
     </Wrapper>
   );
 };
