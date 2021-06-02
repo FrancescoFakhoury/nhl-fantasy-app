@@ -12,8 +12,11 @@ import SelectionMenu from "./SelectionMenu";
 import Profile from "./Profile";
 
 function App() {
-  // document.body.style = "background: RGB(255, 138, 0)";
+  document.body.style = "background: RGB(255, 138, 0)";
+  
   const { isAuthenticated } = useAuth0();
+
+  
 
   return (
     <BrowserRouter>
@@ -57,9 +60,9 @@ const Color = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 20px;
-  background: var(--first-grey);
+  gap: 5rem;
   height: 100vh;
+  margin: 0px 1.2rem 20px 8px;
 `;
 
 const ContentWrapper = styled.div`

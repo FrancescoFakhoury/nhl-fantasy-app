@@ -35,6 +35,7 @@ const StyledButton = styled.button`
     transform: perspective(500px) rotateY(15deg);
     text-shadow: -6px 3px 2px rgba(0, 0, 0, 0.2);
     box-shadow: -2px 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
   }
 `;
 

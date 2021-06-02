@@ -33,12 +33,12 @@ const Sidebar = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 75vh;
   width: 15vw;
   align-items: baseline;
   padding-left: 2rem;
-  background-color: var(--second-grey);
-  border-radius: 10px;
+  background-color: var(--first-card);
+  border-radius: 14px;
 `;
 
 const NavDiv = styled.div`
@@ -46,7 +46,9 @@ const NavDiv = styled.div`
   gap: 5px;
   margin: 20px;
   align-items: center;
-  background-color: var(--third-grey);
+  background: var(--second-card);
+  border: solid grey 1px;
+  box-shadow: 10px 10px 10px -10px;
 
   &:hover {
     transform: scale(1.3);
@@ -56,11 +58,11 @@ const NavDiv = styled.div`
 const StyledNavLink = styled(NavLink)`
   font-size: 20px;
   text-decoration: none;
-  color: #fff;
+  color: black;
   font-weight: bold;
   font-family: var(--font-family);
   padding: 10px;
-  opacity: 0.87;
+  opacity: 1;
 
   &:hover {
     color: var(--orange);

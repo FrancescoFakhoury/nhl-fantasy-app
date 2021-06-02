@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: var(--font-family);
   color: #fff;
 `;
@@ -46,7 +46,6 @@ const MainPageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  background: var(--first-grey);
   padding: 0px 10px;
 `;
 

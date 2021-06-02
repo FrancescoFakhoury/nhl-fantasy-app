@@ -1,28 +1,59 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "./Context";
 import styled from "styled-components";
+import Player from "./Player"
 
 const SelectionMenu = () => {
   const { teams } = useContext(Context);
+  const [isTeamClicked, setIsTeamClicked] = useState(false)
+  const [specificTeam, setSpecificTeam] = useState(null)
 
   const teamsArr = Object.values(teams.teams);
-  console.log(teamsArr);
 
+  console.log("ginger", isTeamClicked)
+
+  const handleClick = (team) => {
+    fetch(`https://statsapi.web.nhl.com/api/v1/teams/${team.id}/roster`)
+    .then((res) => res.json())
+    .then((json) => {
+      setSpecificTeam(json.roster)
+      setIsTeamClicked(true)
+    })
+  }
+
+  // const previousPage = () => {
+  //   setIsTeamClicked(false);
+  // }
+
+  if(isTeamClicked === false) {
   return (
     <Wrapper>
     <PlayerSelectText>Please select your players from the desired team bellow :</PlayerSelectText>
     <TeamWrapper>
-      {teamsArr.map((team) => {
-        return <TeamNames>{team.name}</TeamNames>;
+      {teamsArr.map((team, index) => {
+        return <TeamNames key={index} onClick={() => {handleClick(team)}}>{team.name}</TeamNames>;
       })}
     </TeamWrapper>
     </Wrapper>
   );
+} else {
+  return (
+  <PlayerWrapper>
+    <PlayerSelectText>Please select your players from the desired team bellow :</PlayerSelectText>
+    <TeamWrapper>
+      {specificTeam.map((player, index) => {
+        return <Player player={player} key={index} />
+      })}
+    </TeamWrapper>
+    <button onClick={() => setIsTeamClicked(false)}>Previous Page</button>
+    </PlayerWrapper>
+  );
+};
 };
 
 const PlayerSelectText =styled.div`
-font-size: 1.3rem;
-color: 	#FFF;
+font-size: 1.6rem;
+color: 	black;
 font-family: var(--font-family);
 opacity: 0.87;
 `
@@ -30,31 +61,48 @@ opacity: 0.87;
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
-background-color: var(--grey);
 gap: 50px;
-`
+background-color: var(--first-card);
+padding: 20px;
+border-radius: 14px;
+height: fit-content;
+`;
+
+const PlayerWrapper = styled.div`
+display: flex;
+flex-direction: column;
+gap: 50px;
+background-color: var(--first-card);
+padding: 20px;
+border-radius: 14px;
+height: fit-content;
+`;
 
 const TeamWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: fill-available;
   border-radius: 10px;
-  background-color: var(--second-grey);
+  
 `;
-const TeamNames = styled.p`
+const TeamNames = styled.button`
   font-size: 20px;
   font-family: var(--font-family);
-  color: #fff;
-  padding: 10px;
-  background-color: var(--third-grey);
-  margin: 10px;
+  color: black;
+  padding: 10px 30px;
+  margin: 20px;
   opacity: 0.87;
   border-radius: 4px;
+  border: solid grey 1px;
+  background-color: var(--second-card);
 
   &:hover {
     color: var(--orange);
+    opacity: 1;
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.3);
+    position: relative;
+    z-index: 10;
   }
 `;
 

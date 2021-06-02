@@ -18,12 +18,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--orange);
+  /* background-color: var(--orange); */
 `;
 
 const Title = styled.h1`
   margin-top: 21rem;
-  color: #fff;
+  color: #FFF;
   font-size: 9rem;
   font-family: var(--font-family);
 `;
