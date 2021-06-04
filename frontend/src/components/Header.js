@@ -40,6 +40,7 @@ const Title = styled.h1`
   font-size: 3rem;
   font-family: var(--font-family);
   color: #fff;
+  padding-right: 40px;
 `;
 
 const MainPageWrapper = styled.div`
@@ -62,7 +63,7 @@ const MyStyleButton = styled.button`
   text-align: center;
   font-size: 25px;
   font-family: sans-serif;
-  border: 1px solid darkgoldenrod;
+  border: 1px solid purple;
   border-radius: 2em;
   text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0 0 3px rgba(0, 0, 0, 0.2);

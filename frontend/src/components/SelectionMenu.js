@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Player from "./Player";
 
 const SelectionMenu = () => {
-  const { teams } = useContext(Context);
+  const { teams, myTeam } = useContext(Context);
   const [isTeamClicked, setIsTeamClicked] = useState(false);
   const [specificTeam, setSpecificTeam] = useState(null);
 
@@ -12,11 +12,10 @@ const SelectionMenu = () => {
 
   
   const handleClick = (team) => {
-    console.log("ginger", isTeamClicked);
     fetch(`https://statsapi.web.nhl.com/api/v1/teams/${team.id}/roster`)
       .then((res) => res.json())
       .then((json) => {
-        setSpecificTeam(json.roster);
+        setSpecificTeam({roster: json.roster, teamId: team.id});
         setIsTeamClicked(true);
       });
   };
@@ -54,8 +53,9 @@ const SelectionMenu = () => {
           Please select your players from the desired team bellow :
         </PlayerSelectText>
         <TeamWrapper>
-          {specificTeam.map((player, index) => {
-            return <Player player={player} key={index} />;
+          {specificTeam.roster.map((player, index) => {
+            const isAdded = myTeam.find((e) => e.playerId === player.person.id) 
+            return <Player teamId={specificTeam.teamId} player={player} key={index} mode="player-selection" isAdded={isAdded} />; 
           })}
         </TeamWrapper>
         <button onClick={() => setIsTeamClicked(false)}>Previous Page</button>
@@ -66,7 +66,7 @@ const SelectionMenu = () => {
 
 const PlayerSelectText = styled.div`
   font-size: 1.6rem;
-  color: black;
+  color: #FFF;
   font-family: var(--font-family);
   opacity: 0.87;
   text-align: center;
@@ -96,9 +96,9 @@ const PlayerWrapper = styled.div`
 const TeamWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: fill-available;
-  border-radius: 10px;
+  
 `;
+
 const TeamNames = styled.button`
   font-size: 20px;
   font-family: var(--font-family);
@@ -111,7 +111,7 @@ const TeamNames = styled.button`
   background-color: var(--second-card);
 
   &:hover {
-    color: var(--orange);
+    color: var(--turquoise);
     opacity: 1;
     cursor: pointer;
     transform: scale(1.3);

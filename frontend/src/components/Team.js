@@ -4,7 +4,7 @@ import { Context } from "./Context";
 import Player from "./Player";
 
 const Team = () => {
-  const { myTeam, setMyTeam } = useContext(Context);
+  const { myTeam, setMyTeam, singlePlayer } = useContext(Context);
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -12,25 +12,33 @@ const Team = () => {
     newTeam.splice(index, 1);
     setMyTeam(newTeam);
   };
+
+  console.log("ahahahahha", myTeam);
+
   return (
     <>
       {myTeam.length > 0 ? (
-        <BigWrapper>
+        <BigBigWrapper>
+          <PlayerListText>Your Team:</PlayerListText>
+          <BigWrapper>
           {myTeam.map((player) => {
+            console.log("soup", player);
             return (
               <Wrapper>
-                <Player player={player} />
-                <button
+                <Player player={player} mode="team-view" />
+                <RemoveButton
                   onClick={() => {
                     handleClick(player);
                   }}
                 >
                   remove
-                </button>
+                </RemoveButton>
               </Wrapper>
             );
           })}
-        </BigWrapper>
+          </BigWrapper>
+          <p> Total: </p>
+        </BigBigWrapper>
       ) : (
         <EmptyWrapper>
           <Message>
@@ -42,30 +50,63 @@ const Team = () => {
     </>
   );
 };
+
+const BigBigWrapper = styled.div`
+display: flex;
+flex-direction: column;
+max-width: 968px;
+`
+
 const BigWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  background: var(--first-card);
-  width: 100vw;
+  flex-direction: row;
 `;
+
+const Wrapper1 = styled.div`
+  width: 400px;
+`;
+
+const PlayerListText = styled.p``;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: var(--second-card);
+`;
+
+const RemoveButton = styled.button`
+  font-size: 20px;
+  font-family: var(--font-family);
+  color: black;
+  padding: 3px 10px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 4px;
+  border: solid grey 1px;
+
+  &:hover {
+    color: var(--turquoise);
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    position: relative;
+    z-index: 10;
+  }
 `;
 
 const EmptyWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--first-card);
-  width: 60vw;
+  width: fill-available;
 `;
 
 const Message = styled.p`
-  font-size: 20px;
+  font-size: 40px;
   font-weight: bold;
+  text-align: center;
+  margin-left: 2rem;
+  color: #fff;
+  width: 600px;
 `;
 
 export default Team;

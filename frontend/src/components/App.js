@@ -10,14 +10,13 @@ import Team from "./Team";
 import NHLTeams from "./NHLTeams";
 import SelectionMenu from "./SelectionMenu";
 import Profile from "./Profile";
-import HowToPlay from "./HowToPlay"
+import HowToPlay from "./HowToPlay";
 
 function App() {
-  document.body.style = "background: linear-gradient(to right, purple, turquoise)";
-  
-  const { isAuthenticated } = useAuth0();
+  document.body.style =
+    "background: linear-gradient(to right, purple, turquoise)";
 
-  
+  const { isAuthenticated } = useAuth0();
 
   return (
     <BrowserRouter>
@@ -32,23 +31,21 @@ function App() {
           ) : (
             <Wrapper>
               <Sidebar />
-              <ContentWrapper>
-                <Route exact path="/">
-                  <Profile />
-                </Route>
-                <Route path="/players">
-                  <SelectionMenu />
-                </Route>
-                <Route path="/team">
-                  <Team />
-                </Route>
-                <Route path="/nhl-teams">
-                  <NHLTeams />
-                </Route>
-                <Route path="/how-to-play">
-                  <HowToPlay />
-                </Route>
-              </ContentWrapper>
+              <Route exact path="/">
+                <Profile />
+              </Route>
+              <Route path="/players">
+                <SelectionMenu />
+              </Route>
+              <Route path="/team">
+                <Team />
+              </Route>
+              <Route path="/nhl-teams">
+                <NHLTeams />
+              </Route>
+              <Route path="/how-to-play">
+                <HowToPlay />
+              </Route>
             </Wrapper>
           )}
         </Switch>
@@ -65,14 +62,9 @@ const Wrap = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 5rem;
+  gap: 30px;
   height: 100vh;
   margin: 0px 1.2rem 20px 8px;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  width: fill-available;
 `;
 
 export default App;

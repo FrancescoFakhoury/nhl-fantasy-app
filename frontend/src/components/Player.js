@@ -1,40 +1,82 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
-const Player = ({ player, key }) => {
-  const { myTeam, setMyTeam, singlePlayer, setSinglePlayer } =
-    useContext(Context);
+const Player = ({ player, key, teamId, mode, isAdded }) => {
+  const {
+    myTeam,
+    setMyTeam,
+  } = useContext(Context);
 
-  useEffect(() => {
-    fetch(
+  const isSelectionMode = mode === "player-selection";
+
+  const handleFetch = (player) => {
+    const promise1 = fetch(
       `https://statsapi.web.nhl.com/api/v1/people/${player.person.id}/stats?stats=statsSingleSeason&season=20202021`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setSinglePlayer(json.stats[0].splits[0]);
+    ).then((res) => res.json());
+    // .then((json) => {
+    //   setSinglePlayer(json.stats[0].splits[0].stat);
+    // });
+    console.log("smokey", teamId);
+    const promise2 = fetch(
+      `https://statsapi.web.nhl.com/api/v1/teams/${teamId}/roster`
+    ).then((res) => res.json());
+
+    Promise.all([promise1, promise2]).then((result) => {
+      console.log("taco", result);
+      const { goals, assists, hits, shots, saves } =
+        result[0].stats[0].splits[0].stat;
+      let obj = {
+        teamId,
+        playerId: player.person.id,
+        goals,
+        assists,
+        hits,
+        shots,
+        saves,
+        playerName: player.person.fullName,
+      };
+      setMyTeam((oldValue) => {
+        const newList = oldValue.slice();
+
+        const isInTeam = newList.find(
+          (person) => person.person.id === player.person.id
+        );
+        if (!isInTeam && newList.length < 8) {
+          newList.push({ ...player, ...obj });
+        }
+        return newList;
       });
-  }, []);
+    });
 
-  console.log(singlePlayer)
-
-  const handleClick = (player) => {
-    const newList = myTeam.slice();
-    newList.push(player);
-    setMyTeam(newList);
+    // const goals = singlePlayer.stat.goals;
+    // console.log(goals);
+    // teamArray.push(goals);
   };
 
   return (
     <Wrapper>
       <PlayerName>{player.person.fullName}</PlayerName>
-      <PlayerButton
-        onClick={() => {
-          handleClick(player);
-        }}
-      >
-        Add to Team
-      </PlayerButton>
-    </Wrapper>
+      {!isSelectionMode && (
+        <>
+          <Stats>Goals : {player.goals}</Stats>
+          <Stats>Assists : {player.assists}</Stats>
+          <Stats>Shots : {player.shots}</Stats>
+          <Stats>Hits : {player.hits}</Stats>
+          <Stats>Saves : {player.saves}</Stats>
+        </>
+      )}
+      {isSelectionMode && !isAdded && (
+        <PlayerButton
+          onClick={() => {
+            handleFetch(player);
+          }}
+        >
+          Add to Team
+        </PlayerButton>
+      )}
+    </Wrapper> 
   );
 };
 
@@ -47,17 +89,32 @@ const Wrapper = styled.div`
   margin: 10px;
   padding: 10px;
   background-color: var(--second-card);
-  box-shadow: 20px 20px 15px -20px;
+  box-shadow: 23px 23px 15px -20px;
+  border-radius: 6px;
+  width: 200px;
 `;
 
+const Stats = styled.p`
+font-family: var(--font-family);
+text-align: center;
+`
+
+const Wrapper1 = styled.div`
+width: 800px;
+`
+
+const Wrapper2 = styled.div`
+
+`
+
 const PlayerName = styled.p`
-  font-size: 20px;
-  width: 100px;
+  font-size: 1.5rem;
   text-align: center;
+  font-family: var(--font-family);
 `;
 
 const PlayerButton = styled.button`
-  font-size: 15px;
+  font-size: 20px;
   font-family: var(--font-family);
   color: black;
   padding: 3px 10px;
@@ -67,12 +124,15 @@ const PlayerButton = styled.button`
   border: solid grey 1px;
 
   &:hover {
-    color: var(--orange);
+    color: var(--turquoise);
     opacity: 1;
     cursor: pointer;
     transform: scale(1.1);
     position: relative;
     z-index: 10;
+  }
+
+  &:active {
   }
 `;
 

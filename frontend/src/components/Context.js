@@ -5,7 +5,6 @@ export const Context = createContext({});
 export const ContextProvider = ({ children }) => {
   const [teams, setTeams] = useState([]);
   const [myTeam, setMyTeam] = useState([]);
-  const [singlePlayer, setSinglePlayer] = useState([])
 
   useEffect(() => {
     fetch("https://statsapi.web.nhl.com/api/v1/teams")
@@ -23,8 +22,6 @@ export const ContextProvider = ({ children }) => {
         setTeams,
         myTeam,
         setMyTeam,
-        singlePlayer,
-        setSinglePlayer
       }}
     >
       {children}

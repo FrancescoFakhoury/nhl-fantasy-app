@@ -22,7 +22,7 @@ const StyledButton = styled.button`
   font-size: 35px;
   font-family: sans-serif;
   letter-spacing: 0.2em;
-  border: 1px solid darkgoldenrod;
+  border: 1px solid purple;
   border-radius: 2em;
   transform: perspective(500px) rotateY(-15deg);
   text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
