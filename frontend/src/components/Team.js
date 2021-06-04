@@ -18,8 +18,9 @@ const Team = () => {
   return (
     <>
       {myTeam.length > 0 ? (
+        <Big3>
         <BigBigWrapper>
-          <PlayerListText>Your Team:</PlayerListText>
+          <PlayerListText>Your Team :</PlayerListText>
           <BigWrapper>
           {myTeam.map((player) => {
             console.log("soup", player);
@@ -37,8 +38,9 @@ const Team = () => {
             );
           })}
           </BigWrapper>
-          <p> Total: </p>
+          <TotalPoints> Total : </TotalPoints>
         </BigBigWrapper>
+        </Big3>
       ) : (
         <EmptyWrapper>
           <Message>
@@ -54,11 +56,28 @@ const Team = () => {
 const BigBigWrapper = styled.div`
 display: flex;
 flex-direction: column;
+align-items: center;
 max-width: 968px;
+margin-bottom: 5rem;
+`;
+
+const Big3 = styled.div`
+display: flex;
+justify-content: center;
+width: fill-available;
+height: fill-available;
+/* padding-right: 13rem; */
+`;
+
+const TotalPoints = styled.p`
+margin: 0;
+font-family: var(--font-family);
+font-size: 30px;
 `
 
 const BigWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 `;
 
@@ -66,7 +85,10 @@ const Wrapper1 = styled.div`
   width: 400px;
 `;
 
-const PlayerListText = styled.p``;
+const PlayerListText = styled.p`
+font-family: var(--font-family);
+font-size: 30px;
+`;
 
 const Wrapper = styled.div`
   display: flex;

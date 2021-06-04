@@ -24,10 +24,6 @@ const Sidebar = () => {
         <StyledNavLink to="/team">Your Team</StyledNavLink>
       </NavDiv>
       <NavDiv>
-        <FaHockeyPuck size="2rem" color="black" opacity="0.87" />
-        <StyledNavLink to="/nhl-teams">NHL Teams</StyledNavLink>
-      </NavDiv>
-      <NavDiv>
         <GiHockey size="2rem" color="black" opacity="0.87" />
         <StyledNavLink to="/how-to-play">How to Play</StyledNavLink>
       </NavDiv>
@@ -41,7 +37,7 @@ const Wrapper = styled.div`
   height: 75vh;
   width: 15vw;
   align-items: baseline;
-  padding-left: 2rem;
+  padding-left: 1rem;
   background-color: var(--first-card);
   border-radius: 14px;
 `;
@@ -59,7 +55,7 @@ const NavDiv = styled.div`
   width: 180px;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
 `;
 

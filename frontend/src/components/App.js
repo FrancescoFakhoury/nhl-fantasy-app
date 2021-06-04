@@ -40,25 +40,22 @@ function App() {
               <Route path="/team">
                 <Team />
               </Route>
-              <Route path="/nhl-teams">
-                <NHLTeams />
-              </Route>
               <Route path="/how-to-play">
                 <HowToPlay />
               </Route>
             </Wrapper>
           )}
         </Switch>
-      </Wrap>
+        </Wrap>
     </BrowserRouter>
   );
 }
 
 const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`;
+display: flex;
+flex-direction: column;
+height: 100vh;
+`
 
 const Wrapper = styled.div`
   display: flex;
