@@ -21,6 +21,7 @@ const Team = () => {
         <Big3>
         <BigBigWrapper>
           <PlayerListText>Your Team :</PlayerListText>
+          <NumberOfPlayers>number of players: {myTeam.length} / 8</NumberOfPlayers>
           <BigWrapper>
           {myTeam.map((player) => {
             console.log("soup", player);
@@ -52,6 +53,11 @@ const Team = () => {
     </>
   );
 };
+
+const NumberOfPlayers = styled.p`
+font-family: var(--font-family);
+font-size: 20px;
+`
 
 const BigBigWrapper = styled.div`
 display: flex;
