@@ -10,27 +10,22 @@ const SelectionMenu = () => {
 
   const teamsArr = Object.values(teams.teams);
 
-  
   const handleClick = (team) => {
     fetch(`https://statsapi.web.nhl.com/api/v1/teams/${team.id}/roster`)
       .then((res) => res.json())
       .then((json) => {
-        setSpecificTeam({roster: json.roster, teamId: team.id});
+        setSpecificTeam({ roster: json.roster, teamId: team.id });
         setIsTeamClicked(true);
       });
   };
-
-  // const previousPage = () => {
-  //   setIsTeamClicked(false);
-  // }
 
   if (isTeamClicked === false) {
     return (
       <Wrapper>
         <PlayerSelectText>
-          Please select your players from the desired team bellow :
+          Please select your players from the desired team bellow:
         </PlayerSelectText>
-        <TeamWrapper>
+        <TeamsWrapper>
           {teamsArr.map((team, index) => {
             return (
               <TeamNames
@@ -43,22 +38,32 @@ const SelectionMenu = () => {
               </TeamNames>
             );
           })}
-        </TeamWrapper>
+        </TeamsWrapper>
       </Wrapper>
     );
   } else {
     return (
       <PlayerWrapper>
         <PlayerSelectText>
-          Please select your players from the desired team bellow :
+          Please select your players from the chosen team:
         </PlayerSelectText>
         <TeamWrapper>
           {specificTeam.roster.map((player, index) => {
-            const isAdded = myTeam.find((e) => e.playerId === player.person.id) 
-            return <Player teamId={specificTeam.teamId} player={player} key={index} mode="player-selection" isAdded={isAdded} />; 
+            const isAdded = myTeam.find((e) => e.playerId === player.person.id);
+            return (
+              <Player
+                teamId={specificTeam.teamId}
+                player={player}
+                key={index}
+                mode="player-selection"
+                isAdded={isAdded}
+              />
+            );
           })}
         </TeamWrapper>
-        <button onClick={() => setIsTeamClicked(false)}>Previous Page</button>
+        <TeamSelectButton onClick={() => setIsTeamClicked(false)}>
+          Return to Team Select
+        </TeamSelectButton>
       </PlayerWrapper>
     );
   }
@@ -66,11 +71,29 @@ const SelectionMenu = () => {
 
 const PlayerSelectText = styled.div`
   font-size: 1.6rem;
-  color: #FFF;
+  color: black;
   font-family: var(--font-family);
-  opacity: 0.87;
   text-align: center;
   padding-top: 20px;
+`;
+
+const TeamSelectButton = styled.button`
+  font-size: 40px;
+  font-family: var(--font-family);
+  color: white;
+  padding: 3px 10px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 4px;
+  border: solid grey 1px;
+  width: fit-content;
+  background-color: var(--darkblue);
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
 
 const Wrapper = styled.div`
@@ -80,7 +103,9 @@ const Wrapper = styled.div`
   background-color: var(--first-card);
   padding: 20px;
   border-radius: 14px;
-  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
 `;
 
 const PlayerWrapper = styled.div`
@@ -90,13 +115,25 @@ const PlayerWrapper = styled.div`
   background-color: var(--first-card);
   padding: 20px;
   border-radius: 14px;
-  height: fit-content;
+  margin-top: 7rem;
+  align-items: center;
+`;
+const TeamsWrapper = styled.div`
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: minmax(150px, auto) repeat(7, 150px);
 `;
 
 const TeamWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: minmax(200px, auto) repeat(7, 200px);
 `;
 
 const TeamNames = styled.button`
@@ -109,9 +146,10 @@ const TeamNames = styled.button`
   border-radius: 4px;
   border: solid grey 1px;
   background-color: var(--second-card);
+  max-width: 250px;
 
   &:hover {
-    color: var(--turquoise);
+    color: var(--red);
     opacity: 1;
     cursor: pointer;
     transform: scale(1.3);

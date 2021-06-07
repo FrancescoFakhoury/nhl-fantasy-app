@@ -4,10 +4,7 @@ import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
 const Player = ({ player, key, teamId, mode, isAdded }) => {
-  const {
-    myTeam,
-    setMyTeam,
-  } = useContext(Context);
+  const { myTeam, setMyTeam } = useContext(Context);
 
   const isSelectionMode = mode === "player-selection";
 
@@ -24,7 +21,6 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
     ).then((res) => res.json());
 
     Promise.all([promise1, promise2]).then((result) => {
-      console.log("taco", result);
       const { goals, assists, hits, shots, saves } =
         result[0].stats[0].splits[0].stat;
       let obj = {
@@ -55,8 +51,30 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
     // teamArray.push(goals);
   };
 
+  const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid grey 1px;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--second-card);
+    box-shadow: 15px 15px 15px -15px;
+    border-radius: 6px;
+    width: 200px;
+
+    &:hover {
+      transform: scale(1.1);
+      & ${PlayerName} {
+        color: red;
+      }
+    }
+  `;
+
   return (
     <Wrapper>
+      {player.key}
       <PlayerName>{player.person.fullName}</PlayerName>
       {!isSelectionMode && (
         <>
@@ -76,41 +94,20 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
           Add to Team
         </PlayerButton>
       )}
-    </Wrapper> 
+    </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: solid grey 1px;
-  margin: 10px;
-  padding: 10px;
-  background-color: var(--second-card);
-  box-shadow: 23px 23px 15px -20px;
-  border-radius: 6px;
-  width: 200px;
-`;
-
 const Stats = styled.p`
-font-family: var(--font-family);
-text-align: center;
-`
-
-const Wrapper1 = styled.div`
-width: 800px;
-`
-
-const Wrapper2 = styled.div`
-
-`
+  font-family: var(--font-family);
+  text-align: center;
+`;
 
 const PlayerName = styled.p`
   font-size: 1.5rem;
   text-align: center;
   font-family: var(--font-family);
+  opacity: 0.87;
 `;
 
 const PlayerButton = styled.button`
@@ -124,7 +121,7 @@ const PlayerButton = styled.button`
   border: solid grey 1px;
 
   &:hover {
-    color: var(--turquoise);
+    color: var(--red);
     opacity: 1;
     cursor: pointer;
     transform: scale(1.1);

@@ -13,33 +13,37 @@ const Team = () => {
     setMyTeam(newTeam);
   };
 
-  console.log("ahahahahha", myTeam);
-
   return (
     <>
       {myTeam.length > 0 ? (
         <Big3>
         <BigBigWrapper>
           <PlayerListText>Your Team :</PlayerListText>
-          <NumberOfPlayers>number of players: {myTeam.length} / 8</NumberOfPlayers>
+          <NumberOfPlayers>
+            number of players: {myTeam.length} / 8
+          </NumberOfPlayers>
           <BigWrapper>
-          {myTeam.map((player) => {
-            console.log("soup", player);
-            return (
-              <Wrapper>
-                <Player player={player} mode="team-view" />
-                <RemoveButton
-                  onClick={() => {
-                    handleClick(player);
-                  }}
-                >
-                  remove
-                </RemoveButton>
-              </Wrapper>
-            );
-          })}
+            {myTeam.map((player) => {
+              console.log("soup", player);
+              return (
+                <Wrapper>
+                  <Player player={player} mode="team-view" />
+                  <RemoveButton
+                    onClick={() => {
+                      handleClick(player);
+                    }}
+                  >
+                    remove
+                  </RemoveButton>
+                </Wrapper>
+              );
+            })}
           </BigWrapper>
+          <ButtonWrapper>
+          <ConfirmButton>Confirm your team</ConfirmButton>
+          <UpdateButton>Update your total points</UpdateButton>
           <TotalPoints> Total : </TotalPoints>
+          </ButtonWrapper>
         </BigBigWrapper>
         </Big3>
       ) : (
@@ -55,31 +59,76 @@ const Team = () => {
 };
 
 const NumberOfPlayers = styled.p`
-font-family: var(--font-family);
+  font-family: var(--font-family);
+  font-size: 20px;
+`;
+
+const ConfirmButton = styled.button`
 font-size: 20px;
+  font-family: var(--font-family);
+  color: black;
+  padding: 3px 10px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 4px;
+  border: solid grey 1px;
+
+  &:hover {
+    color: var(--red);
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    position: relative;
+    z-index: 10;
+  }
+`
+
+const UpdateButton = styled.button`
+font-size: 20px;
+  font-family: var(--font-family);
+  color: black;
+  padding: 3px 10px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 4px;
+  border: solid grey 1px;
+
+  &:hover {
+    color: var(--red);
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    position: relative;
+    z-index: 10;
+  }
+`
+
+const ButtonWrapper = styled.div`
+display: flex;
+flex-direction: column;
+gap: 4rem;
+margin-top: 5rem;
+text-align:center;
 `
 
 const BigBigWrapper = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-max-width: 968px;
-margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 968px;
+  margin-top: 7rem;
 `;
 
 const Big3 = styled.div`
-display: flex;
-justify-content: center;
-width: fill-available;
-height: fill-available;
-/* padding-right: 13rem; */
+  display: flex;
+  justify-content: center;
 `;
 
 const TotalPoints = styled.p`
-margin: 0;
-font-family: var(--font-family);
-font-size: 30px;
-`
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 30px;
+`;
 
 const BigWrapper = styled.div`
   display: flex;
@@ -92,8 +141,8 @@ const Wrapper1 = styled.div`
 `;
 
 const PlayerListText = styled.p`
-font-family: var(--font-family);
-font-size: 30px;
+  font-family: var(--font-family);
+  font-size: 30px;
 `;
 
 const Wrapper = styled.div`
@@ -112,7 +161,7 @@ const RemoveButton = styled.button`
   border: solid grey 1px;
 
   &:hover {
-    color: var(--turquoise);
+    color: var(--red);
     opacity: 1;
     cursor: pointer;
     transform: scale(1.1);
@@ -126,6 +175,7 @@ const EmptyWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: fill-available;
+  height: 100vh;
 `;
 
 const Message = styled.p`
@@ -133,7 +183,7 @@ const Message = styled.p`
   font-weight: bold;
   text-align: center;
   margin-left: 2rem;
-  color: #fff;
+  color: black;
   width: 600px;
 `;
 

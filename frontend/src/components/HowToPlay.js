@@ -25,18 +25,20 @@ const HowToPlay = () => {
 };
 const EvenBiggerWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  margin-top: 5rem;
+  height: 100vh;
 `;
 
 const Steps = styled.span`
-font-weight: bold;
-`
+  font-weight: bold;
+  color: black;
+`;
 const HowToWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background: #fff;
   width: fit-content;
@@ -53,7 +55,7 @@ const ListItems = styled.li`
   padding: 30px 0px;
   font-family: var(--font-family);
   font-size: 18px;
-  color: purple;
+  color: red;
   font-weight: bold;
 `;
 

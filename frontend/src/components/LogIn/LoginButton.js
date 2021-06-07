@@ -22,7 +22,7 @@ const StyledButton = styled.button`
   font-size: 35px;
   font-family: sans-serif;
   letter-spacing: 0.2em;
-  border: 1px solid purple;
+  border: 1px solid red;
   border-radius: 2em;
   transform: perspective(500px) rotateY(-15deg);
   text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
@@ -32,7 +32,7 @@ const StyledButton = styled.button`
   overflow: hidden;
 
   &:hover {
-    transform: perspective(500px) rotateY(15deg);
+    transform: perspective(500px) rotateY(30deg);
     text-shadow: -6px 3px 2px rgba(0, 0, 0, 0.2);
     box-shadow: -2px 0 0 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
