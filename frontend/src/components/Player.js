@@ -71,7 +71,6 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
       }
     }
   `;
-  console.log("test")
   return (
     <Wrapper>
       {player.key}
@@ -83,6 +82,7 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
           <Stats>Shots : {player.shots}</Stats>
           <Stats>Hits : {player.hits}</Stats>
           <Stats>Saves : {player.saves}</Stats>
+          <Stats>Total: {getPointValueFromAugmentedPlayer(player)} </Stats>
         </>
       )}
       {isSelectionMode && !isAdded && (

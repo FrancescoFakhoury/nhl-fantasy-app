@@ -16,6 +16,8 @@ const handlePost = async (req, res) => {
 
   const db = client.db("Fantasy-team");
 
+  await db.collection("Teams").remove({})
+
   await db.collection("Teams").insertMany(req.body);
   client.close();
   console.log("disconnected!");
@@ -45,13 +47,27 @@ const getTeam = async (req, res) => {
   console.log("disconnected!");
 };
 
-const deletePlayer = async (req, res) => {
-  const client = await MongoClient(MONGO_URI, options);
+const handleUpdate = async (req, res) => {
+    const client = await MongoClient(MONGO_URI, options);
 
-  await client.connect();
-  console.log("connected");
+    await client.connect();
+    console.log("connected");
+  
+    const db = client.db("Fantasy-team");
+}
 
-  const db = client.db("Fantasy-team");
-};
+// const deletePlayer = async (req, res) => {
+//   const client = await MongoClient(MONGO_URI, options);
+//   const { id } = req.params;
 
-module.exports = { handlePost, getTeam, deletePlayer };
+//   await client.connect();
+//   console.log("connected");
+
+//   const db = client.db("Fantasy-team");
+
+//   const array = await db.collection("Teams").remove({})
+  
+//   array.
+//   }
+
+module.exports = { handlePost, getTeam, handleUpdate };

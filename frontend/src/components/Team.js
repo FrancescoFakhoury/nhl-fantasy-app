@@ -1,12 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Context } from "./Context";
 import Player from "./Player";
+import { getPointValueFromAugmentedPlayer } from "../helpers";
 
 const Team = () => {
   const { myTeam, setMyTeam, singlePlayer } = useContext(Context);
-
-  
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -31,7 +30,9 @@ const Team = () => {
       });
   };
 
-  console.log(myTeam)
+  console.log(myTeam);
+
+  let total = useState(0);
 
   return (
     <>
@@ -44,6 +45,7 @@ const Team = () => {
             </NumberOfPlayers>
             <BigWrapper>
               {myTeam.map((player) => {
+                total += Number(getPointValueFromAugmentedPlayer(player));
                 return (
                   <Wrapper>
                     <Player player={player} mode="team-view" />
@@ -63,7 +65,7 @@ const Team = () => {
                 Confirm your team
               </ConfirmButton>
               <UpdateButton>Update your total points</UpdateButton>
-              <TotalPoints> Total : {} </TotalPoints>
+              <TotalPoints> Total : {total} </TotalPoints>
             </ButtonWrapper>
           </BigBigWrapper>
         </Big3>
