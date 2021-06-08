@@ -15,6 +15,14 @@ export const ContextProvider = ({ children }) => {
       .catch((err) => console.log("err"));
   }, []);
 
+  useEffect(() => {
+    fetch("/api/get-team")
+      .then((res) => res.json())
+      .then((json) => {
+        setMyTeam(json.data);
+      });
+  }, []);
+
   return (
     <Context.Provider
       value={{

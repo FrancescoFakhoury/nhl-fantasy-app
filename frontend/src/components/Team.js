@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Context } from "./Context";
 import Player from "./Player";
 
 const Team = () => {
   const { myTeam, setMyTeam, singlePlayer } = useContext(Context);
+
+  
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -28,6 +30,8 @@ const Team = () => {
         console.log("Success:", data);
       });
   };
+
+  console.log(myTeam)
 
   return (
     <>
