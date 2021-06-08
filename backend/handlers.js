@@ -5,6 +5,3 @@ const { MONGO_URI } = process.env;
 
 //GET all teams
 
-const getTeams = (req, res) => {
-    
-}

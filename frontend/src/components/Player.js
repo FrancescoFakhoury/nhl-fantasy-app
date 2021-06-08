@@ -71,7 +71,7 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
       }
     }
   `;
-
+  console.log("test")
   return (
     <Wrapper>
       {player.key}

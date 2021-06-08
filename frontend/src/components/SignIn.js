@@ -18,39 +18,37 @@ import {
   ZoomIn,
 } from "react-scroll-motion";
 
-
-
 const SignIn = () => {
-
-    return (
-      <Wrapper>
-        <ScrollContainer>
-          <ScrollPage page={0}>
-            <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -700))}>
-              <Title>BenchMates</Title>
-            </Animator>
-          </ScrollPage>
-          <ScrollPage page={1}>
-            <Animator
-              animation={batch(
-                Fade(),
-                Sticky(),
-                MoveIn(0, 700),
-                MoveOut(0, -700)
-              )}
-            >
-              <SubText>Become ONE with the fantasy Gods.</SubText>
-            </Animator>
-          </ScrollPage>
-          <ScrollPage page={2}>
-            <Animator animation={batch(Fade(), Sticky(), MoveIn(0, 700))}>
-              <LoginButton />
-            </Animator>
-          </ScrollPage>
-        </ScrollContainer>
-      </Wrapper>
-    );
-  };
+  console.log("taco");
+  return (
+    <Wrapper>
+      <ScrollContainer>
+        <ScrollPage page={0}>
+          <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -700))}>
+            <Title>BenchMates</Title>
+          </Animator>
+        </ScrollPage>
+        <ScrollPage page={1}>
+          <Animator
+            animation={batch(
+              Fade(),
+              Sticky(),
+              MoveIn(0, 700),
+              MoveOut(0, -700)
+            )}
+          >
+            <SubText>Become ONE with the fantasy Gods.</SubText>
+          </Animator>
+        </ScrollPage>
+        <ScrollPage page={2}>
+          <Animator animation={batch(Fade(), Sticky(), MoveIn(0, 700))}>
+            <LoginButton />
+          </Animator>
+        </ScrollPage>
+      </ScrollContainer>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;

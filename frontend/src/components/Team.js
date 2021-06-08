@@ -10,41 +10,58 @@ const Team = () => {
     const newTeam = [...myTeam];
     const index = newTeam.indexOf(player);
     newTeam.splice(index, 1);
+    console.log("hello", newTeam);
     setMyTeam(newTeam);
+  };
+
+  const handlePost = () => {
+    const data = myTeam;
+    fetch("/api/create-team", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      });
   };
 
   return (
     <>
       {myTeam.length > 0 ? (
         <Big3>
-        <BigBigWrapper>
-          <PlayerListText>Your Team :</PlayerListText>
-          <NumberOfPlayers>
-            number of players: {myTeam.length} / 8
-          </NumberOfPlayers>
-          <BigWrapper>
-            {myTeam.map((player) => {
-              console.log("soup", player);
-              return (
-                <Wrapper>
-                  <Player player={player} mode="team-view" />
-                  <RemoveButton
-                    onClick={() => {
-                      handleClick(player);
-                    }}
-                  >
-                    remove
-                  </RemoveButton>
-                </Wrapper>
-              );
-            })}
-          </BigWrapper>
-          <ButtonWrapper>
-          <ConfirmButton>Confirm your team</ConfirmButton>
-          <UpdateButton>Update your total points</UpdateButton>
-          <TotalPoints> Total : </TotalPoints>
-          </ButtonWrapper>
-        </BigBigWrapper>
+          <BigBigWrapper>
+            <PlayerListText>Your Team :</PlayerListText>
+            <NumberOfPlayers>
+              number of players: {myTeam.length} / 8
+            </NumberOfPlayers>
+            <BigWrapper>
+              {myTeam.map((player) => {
+                return (
+                  <Wrapper>
+                    <Player player={player} mode="team-view" />
+                    <RemoveButton
+                      onClick={() => {
+                        handleClick(player);
+                      }}
+                    >
+                      remove
+                    </RemoveButton>
+                  </Wrapper>
+                );
+              })}
+            </BigWrapper>
+            <ButtonWrapper>
+              <ConfirmButton onClick={handlePost}>
+                Confirm your team
+              </ConfirmButton>
+              <UpdateButton>Update your total points</UpdateButton>
+              <TotalPoints> Total : {} </TotalPoints>
+            </ButtonWrapper>
+          </BigBigWrapper>
         </Big3>
       ) : (
         <EmptyWrapper>
@@ -64,7 +81,7 @@ const NumberOfPlayers = styled.p`
 `;
 
 const ConfirmButton = styled.button`
-font-size: 20px;
+  font-size: 20px;
   font-family: var(--font-family);
   color: black;
   padding: 3px 10px;
@@ -81,10 +98,10 @@ font-size: 20px;
     position: relative;
     z-index: 10;
   }
-`
+`;
 
 const UpdateButton = styled.button`
-font-size: 20px;
+  font-size: 20px;
   font-family: var(--font-family);
   color: black;
   padding: 3px 10px;
@@ -101,15 +118,15 @@ font-size: 20px;
     position: relative;
     z-index: 10;
   }
-`
+`;
 
 const ButtonWrapper = styled.div`
-display: flex;
-flex-direction: column;
-gap: 4rem;
-margin-top: 5rem;
-text-align:center;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 5rem;
+  text-align: center;
+`;
 
 const BigBigWrapper = styled.div`
   display: flex;
