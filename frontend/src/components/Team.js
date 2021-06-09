@@ -8,13 +8,7 @@ const Team = () => {
   const { myTeam, setMyTeam, isButtonPressed, setIsButtonPressed } =
     useContext(Context);
 
-  const handleClick = (player) => {
-    const newTeam = [...myTeam];
-    const index = newTeam.indexOf(player);
-    newTeam.splice(index, 1);
-    console.log("hello", newTeam);
-    setMyTeam(newTeam);
-  };
+  
 
   const handlePost = () => {
     const data = myTeam;
@@ -56,13 +50,7 @@ const Team = () => {
                 return (
                   <Wrapper>
                     <Player player={player} mode="team-view" />
-                    <RemoveButton
-                      onClick={() => {
-                        handleClick(player);
-                      }}
-                    >
-                      remove
-                    </RemoveButton>
+                    
                   </Wrapper>
                 );
               })}
@@ -187,25 +175,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const RemoveButton = styled.button`
-  font-size: 20px;
-  font-family: var(--font-family-graduate);
-  color: black;
-  padding: 3px 10px;
-  margin: 20px;
-  opacity: 0.87;
-  border-radius: 4px;
-  border: solid grey 1px;
 
-  &:hover {
-    color: var(--red);
-    opacity: 1;
-    cursor: pointer;
-    transform: scale(1.1);
-    position: relative;
-    z-index: 10;
-  }
-`;
 
 const EmptyWrapper = styled.div`
   display: flex;

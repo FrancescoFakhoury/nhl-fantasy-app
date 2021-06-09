@@ -1,10 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
+import { useSpring, animated, to } from "@react-spring/web";
+import { useDrag } from "react-use-gesture";
 import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
 const Player = ({ player, teamId, mode, isAdded }) => {
-  const { setMyTeam } = useContext(Context);
+  const { setMyTeam, myTeam } = useContext(Context);
+
+  const handleClick = (player) => {
+    const newTeam = [...myTeam];
+    const index = newTeam.indexOf(player);
+    newTeam.splice(index, 1);
+    console.log("hello", newTeam);
+    setMyTeam(newTeam);
+  };
+
+  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
+
+  const bind = useDrag(({ down, movement: [mx, my] }) => {
+    api.start({ x: down ? mx : 0, y: down ? my : 0 });
+  });
 
   const isSelectionMode = mode === "player-selection";
 
@@ -53,48 +69,59 @@ const Player = ({ player, teamId, mode, isAdded }) => {
 
   console.log(player);
   return (
-    <Wrapper>
-      {player.key}
-      <PlayerName>{player.person.fullName}</PlayerName>
-      {isSelectionMode && <PlayerNumber>{player.jerseyNumber}</PlayerNumber>}
-      {!isSelectionMode && (
-        <>
-          <Stats>
-            <StatType>Goals :</StatType>
-            <SingleStat>{player.goals}</SingleStat>
-          </Stats>
-          <Stats>
-            <StatType>Assists :</StatType>
-            <SingleStat> {player.assists}</SingleStat>
-          </Stats>
-          <Stats>
-            <StatType>Shots :</StatType> <SingleStat>{player.shots}</SingleStat>
-          </Stats>
-          <Stats>
-            <StatType>Hits :</StatType> <SingleStat> {player.hits}</SingleStat>
-          </Stats>
-          <Stats>
-            <StatType>Saves :</StatType>{" "}
-            <SingleStat> {player.saves}</SingleStat>
-          </Stats>
-          <Stats>
-            <StatType>Total:</StatType>{" "}
-            <SingleStat>
-              {getPointValueFromAugmentedPlayer(player).toFixed(2)}
-            </SingleStat>
-          </Stats>
-        </>
-      )}
-      {isSelectionMode && !isAdded && (
-        <PlayerButton
-          onClick={() => {
-            handleFetch(player);
-          }}
-        >
-          Add to Team
-        </PlayerButton>
-      )}
-    </Wrapper>
+    <animated.div {...bind()} style={{ x, y }}>
+      <Wrapper>
+        {player.key}
+        <PlayerName>{player.person.fullName}</PlayerName>
+        {isSelectionMode && <PlayerNumber>{player.jerseyNumber}</PlayerNumber>}
+        {!isSelectionMode && (
+          <>
+            <Stats>
+              <StatType>Goals :</StatType>
+              <SingleStat>{player.goals}</SingleStat>
+            </Stats>
+            <Stats>
+              <StatType>Assists :</StatType>
+              <SingleStat> {player.assists}</SingleStat>
+            </Stats>
+            <Stats>
+              <StatType>Shots :</StatType>{" "}
+              <SingleStat>{player.shots}</SingleStat>
+            </Stats>
+            <Stats>
+              <StatType>Hits :</StatType>{" "}
+              <SingleStat> {player.hits}</SingleStat>
+            </Stats>
+            <Stats>
+              <StatType>Saves :</StatType>{" "}
+              <SingleStat> {player.saves}</SingleStat>
+            </Stats>
+            <Stats>
+              <StatType>Total:</StatType>{" "}
+              <SingleStat>
+                {getPointValueFromAugmentedPlayer(player).toFixed(2)}
+              </SingleStat>
+            </Stats>
+            <RemoveButton
+              onClick={() => {
+                handleClick(player);
+              }}
+            >
+              remove
+            </RemoveButton>
+          </>
+        )}
+        {isSelectionMode && !isAdded && (
+          <PlayerButton
+            onClick={() => {
+              handleFetch(player);
+            }}
+          >
+            Add to Team
+          </PlayerButton>
+        )}
+      </Wrapper>
+    </animated.div>
   );
 };
 
@@ -114,6 +141,26 @@ const Wrapper = styled.div`
 
   &:hover {
     transform: scale(1.1);
+  }
+`;
+
+const RemoveButton = styled.button`
+  font-size: 20px;
+  font-family: var(--font-family-graduate);
+  color: black;
+  padding: 3px 10px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 4px;
+  border: solid grey 1px;
+
+  &:hover {
+    color: var(--red);
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    position: relative;
+    z-index: 10;
   }
 `;
 
