@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Context } from "./Context";
 import Player from "./Player";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 
 const Team = () => {
-  const { myTeam, setMyTeam, singlePlayer } = useContext(Context);
+  const { myTeam, setMyTeam } = useContext(Context);
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -32,7 +32,7 @@ const Team = () => {
 
   console.log(myTeam);
 
-  let total = useState(0);
+  let total = 0;
 
   return (
     <>
@@ -45,7 +45,9 @@ const Team = () => {
             </NumberOfPlayers>
             <BigWrapper>
               {myTeam.map((player) => {
-                total += Number(getPointValueFromAugmentedPlayer(player));
+                const points = getPointValueFromAugmentedPlayer(player);
+                console.log(points);
+                total += points;
                 return (
                   <Wrapper>
                     <Player player={player} mode="team-view" />
@@ -65,7 +67,7 @@ const Team = () => {
                 Confirm your team
               </ConfirmButton>
               <UpdateButton>Update your total points</UpdateButton>
-              <TotalPoints> Total : {total} </TotalPoints>
+              <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
             </ButtonWrapper>
           </BigBigWrapper>
         </Big3>
@@ -82,13 +84,13 @@ const Team = () => {
 };
 
 const NumberOfPlayers = styled.p`
-  font-family: var(--font-family);
-  font-size: 20px;
+  font-family: var(--font-family-graduate);
+  font-size: 30px;
 `;
 
 const ConfirmButton = styled.button`
   font-size: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: black;
   padding: 3px 10px;
   margin: 20px;
@@ -108,7 +110,7 @@ const ConfirmButton = styled.button`
 
 const UpdateButton = styled.button`
   font-size: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: black;
   padding: 3px 10px;
   margin: 20px;
@@ -132,13 +134,14 @@ const ButtonWrapper = styled.div`
   gap: 4rem;
   margin-top: 5rem;
   text-align: center;
+  margin-bottom: 5rem;
 `;
 
 const BigBigWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 968px;
+  max-width: 1368px;
   margin-top: 7rem;
 `;
 
@@ -149,7 +152,7 @@ const Big3 = styled.div`
 
 const TotalPoints = styled.p`
   margin: 0;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   font-size: 30px;
 `;
 
@@ -159,13 +162,9 @@ const BigWrapper = styled.div`
   flex-direction: row;
 `;
 
-const Wrapper1 = styled.div`
-  width: 400px;
-`;
-
 const PlayerListText = styled.p`
-  font-family: var(--font-family);
-  font-size: 30px;
+  font-family: var(--font-family-graduate);
+  font-size: 40px;
 `;
 
 const Wrapper = styled.div`
@@ -175,7 +174,7 @@ const Wrapper = styled.div`
 
 const RemoveButton = styled.button`
   font-size: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: black;
   padding: 3px 10px;
   margin: 20px;

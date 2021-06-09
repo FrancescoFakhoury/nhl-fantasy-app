@@ -9,13 +9,9 @@ import {
   ScrollPage,
   batch,
   Fade,
-  FadeIn,
-  Move,
   MoveIn,
   MoveOut,
   Sticky,
-  StickyIn,
-  ZoomIn,
 } from "react-scroll-motion";
 
 const SignIn = () => {

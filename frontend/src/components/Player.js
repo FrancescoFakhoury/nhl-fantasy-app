@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
 const Player = ({ player, key, teamId, mode, isAdded }) => {
-  const { myTeam, setMyTeam } = useContext(Context);
+  const { setMyTeam } = useContext(Context);
 
   const isSelectionMode = mode === "player-selection";
 
@@ -62,7 +62,7 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
     background-color: var(--second-card);
     box-shadow: 15px 15px 15px -15px;
     border-radius: 6px;
-    width: 200px;
+    width: 300px;
 
     &:hover {
       transform: scale(1.1);
@@ -77,12 +77,14 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
       <PlayerName>{player.person.fullName}</PlayerName>
       {!isSelectionMode && (
         <>
-          <Stats>Goals : {player.goals}</Stats>
-          <Stats>Assists : {player.assists}</Stats>
-          <Stats>Shots : {player.shots}</Stats>
-          <Stats>Hits : {player.hits}</Stats>
-          <Stats>Saves : {player.saves}</Stats>
-          <Stats>Total: {getPointValueFromAugmentedPlayer(player)} </Stats>
+          <Stats><StatType>Goals :</StatType> {player.goals}</Stats>
+          <Stats><StatType>Assists :</StatType> {player.assists}</Stats>
+          <Stats><StatType>Shots :</StatType> {player.shots}</Stats>
+          <Stats><StatType>Hits :</StatType> {player.hits}</Stats>
+          <Stats><StatType>Saves :</StatType> {player.saves}</Stats>
+          <Stats>
+            Total: {getPointValueFromAugmentedPlayer(player).toFixed(2)}{" "}
+          </Stats>
         </>
       )}
       {isSelectionMode && !isAdded && (
@@ -106,9 +108,14 @@ const Stats = styled.p`
 const PlayerName = styled.p`
   font-size: 1.5rem;
   text-align: center;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   opacity: 0.87;
+  font-weight: bold;
 `;
+
+const StatType = styled.span`
+font-family: var(--font-family-graduate);
+`
 
 const PlayerButton = styled.button`
   font-size: 20px;

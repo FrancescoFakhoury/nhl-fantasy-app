@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
 import { BsPersonFill } from "react-icons/bs";
 import { RiTeamFill } from "react-icons/ri";
-import { FaHockeyPuck, FaHome } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { GiHockey } from "react-icons/gi";
 
 const Header = () => {
@@ -47,8 +47,8 @@ const Header = () => {
             <StyledNavLink to="/how-to-play">How to Play</StyledNavLink>
           </NavDiv>
           <SmallWrapper>
-          <Text>Welcome, {user.nickname} </Text>
-          <LogoutButton />
+            <Text>Welcome, {user.nickname} </Text>
+            <LogoutButton />
           </SmallWrapper>
         </MainPageWrapper>
       </WholeWrapper>
@@ -72,10 +72,10 @@ const Wrapper = styled.div`
 `;
 
 const SmallWrapper = styled.div`
-display: flex;
-gap: 20px;
-align-items: center;
-`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -128,12 +128,10 @@ const NavDiv = styled.div`
   gap: 5px;
   margin: 27px 0px;
   align-items: center;
-  
 
   &:hover {
     transform: scale(1.4);
   }
-
 `;
 
 const StyledNavLink = styled(NavLink)`

@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useAuth0();
   console.log("sdjkhgdadkgjhfagkjhfgjhka", user);
   return (
     <Wrapper>
-    <Title>Your Profile Page</Title>
+      <Title>Your Profile Page</Title>
       <ProfileInfo>
         <ImageWrapper>
           <Image src={user.picture} />
@@ -33,7 +33,7 @@ const Profile = () => {
           </ElemWrapper>
         </InfoWrapper>
       </ProfileInfo>
-      <StyledNavLink to ="/team">View your Team</StyledNavLink>
+      <StyledNavLink to="/team">View your Team</StyledNavLink>
     </Wrapper>
   );
 };
@@ -48,11 +48,11 @@ const Wrapper = styled.div`
   margin-top: 50px;
 `;
 const StyledNavLink = styled(NavLink)`
-  font-size: 20px;
+  font-size: 30px;
   text-decoration: none;
   color: black;
   font-weight: bold;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   padding: 10px;
   opacity: 1;
 
@@ -63,22 +63,22 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Title = styled.h1`
-font-family: var(--font-family);
-font-size: 50px;
-`
+  font-family: var(--font-family-graduate);
+  font-size: 60px;
+`;
 
 const Info = styled.p`
-font-family: var(--font-family);
-margin: 0px;
-font-size: 20px;
-`
+  font-family: var(--font-family);
+  margin: 0px;
+  font-size: 25px;
+`;
 
-const TypeOfInfo= styled.p`
-font-size: 20px;
-font-weight: bold;
-font-family: var(--font-family);
-margin: 0px;
-`
+const TypeOfInfo = styled.p`
+  font-size: 25px;
+  font-weight: bold;
+  font-family: var(--font-family-graduate);
+  margin: 0px;
+`;
 
 const Image = styled.img`
   height: 400px;
@@ -87,13 +87,14 @@ const Image = styled.img`
   border: solid black 6px;
 `;
 const ElemWrapper = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-&:hover {
+  &:hover {
     transform: scale(1.3);
-}
-`
+  }
+`;
 const ProfileInfo = styled.div`
   display: flex;
   align-items: center;
@@ -103,10 +104,9 @@ const ProfileInfo = styled.div`
 const ImageWrapper = styled.div``;
 
 const InfoWrapper = styled.div`
-display: flex;
-flex-direction: column;
-gap: 40px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
 
 export default Profile;

@@ -6,7 +6,6 @@ import SignIn from "./SignIn";
 import Header from "./Header";
 import { useAuth0 } from "@auth0/auth0-react";
 import Team from "./Team";
-import NHLTeams from "./NHLTeams";
 import SelectionMenu from "./SelectionMenu";
 import Profile from "./Profile";
 import HowToPlay from "./HowToPlay";

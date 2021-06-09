@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --font-family: 'Nanum Gothic', sans-serif;  
     --second-card: RGBA(255,255,255);
     --darkblue: #0b223e;
+    --font-family-graduate: 'Graduate', sans-serif;
 }
 
 html, body {

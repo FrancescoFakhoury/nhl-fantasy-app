@@ -72,14 +72,14 @@ const SelectionMenu = () => {
 const PlayerSelectText = styled.div`
   font-size: 1.6rem;
   color: black;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   text-align: center;
   padding-top: 20px;
 `;
 
 const TeamSelectButton = styled.button`
   font-size: 40px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: white;
   padding: 3px 10px;
   margin: 20px;
@@ -133,12 +133,12 @@ const TeamWrapper = styled.div`
   align-content: center;
   min-height: 100vh;
   grid-template-columns: repeat(4, 300px);
-  grid-template-rows: minmax(200px, auto) repeat(7, 200px);
+  grid-template-rows: minmax(200px, auto) repeat(6, 200px);
 `;
 
 const TeamNames = styled.button`
   font-size: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: black;
   padding: 10px 30px;
   margin: 20px;
