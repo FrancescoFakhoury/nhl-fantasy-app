@@ -132,7 +132,7 @@ const TeamWrapper = styled.div`
   justify-content: center;
   align-content: center;
   min-height: 100vh;
-  grid-template-columns: repeat(4, 300px);
+  grid-template-columns: repeat(4, 350px);
   grid-template-rows: minmax(200px, auto) repeat(6, 200px);
 `;
 

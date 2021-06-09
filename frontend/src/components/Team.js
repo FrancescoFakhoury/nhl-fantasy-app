@@ -5,7 +5,8 @@ import Player from "./Player";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 
 const Team = () => {
-  const { myTeam, setMyTeam } = useContext(Context);
+  const { myTeam, setMyTeam, isButtonPressed, setIsButtonPressed } =
+    useContext(Context);
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -17,6 +18,7 @@ const Team = () => {
 
   const handlePost = () => {
     const data = myTeam;
+    setIsButtonPressed(false);
     fetch("/api/create-team", {
       method: "POST",
       headers: {
@@ -30,9 +32,13 @@ const Team = () => {
       });
   };
 
-  console.log(myTeam);
+  const handlePoints = () => {
+    setIsButtonPressed(true);
+  };
 
   let total = 0;
+
+  console.log(isButtonPressed)
 
   return (
     <>
@@ -46,7 +52,6 @@ const Team = () => {
             <BigWrapper>
               {myTeam.map((player) => {
                 const points = getPointValueFromAugmentedPlayer(player);
-                console.log(points);
                 total += points;
                 return (
                   <Wrapper>
@@ -66,8 +71,14 @@ const Team = () => {
               <ConfirmButton onClick={handlePost}>
                 Confirm your team
               </ConfirmButton>
-              <UpdateButton>Update your total points</UpdateButton>
-              <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
+              <UpdateButton onClick={handlePoints}>
+                Update your total points
+              </UpdateButton>
+              {isButtonPressed === true ? (
+                <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
+              ) : (
+                <TotalPoints> Total : 0 </TotalPoints>
+              )}
             </ButtonWrapper>
           </BigBigWrapper>
         </Big3>
