@@ -16,7 +16,7 @@ const handlePost = async (req, res) => {
 
   const db = client.db("Fantasy-team");
 
-  await db.collection("Teams").remove({})
+  await db.collection("Teams").remove({});
 
   await db.collection("Teams").insertMany(req.body);
   client.close();

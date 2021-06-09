@@ -77,13 +77,24 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
       <PlayerName>{player.person.fullName}</PlayerName>
       {!isSelectionMode && (
         <>
-          <Stats><StatType>Goals :</StatType> {player.goals}</Stats>
-          <Stats><StatType>Assists :</StatType> {player.assists}</Stats>
-          <Stats><StatType>Shots :</StatType> {player.shots}</Stats>
-          <Stats><StatType>Hits :</StatType> {player.hits}</Stats>
-          <Stats><StatType>Saves :</StatType> {player.saves}</Stats>
           <Stats>
-            Total: {getPointValueFromAugmentedPlayer(player).toFixed(2)}{" "}
+            <StatType>Goals :</StatType> {player.goals}
+          </Stats>
+          <Stats>
+            <StatType>Assists :</StatType> {player.assists}
+          </Stats>
+          <Stats>
+            <StatType>Shots :</StatType> {player.shots}
+          </Stats>
+          <Stats>
+            <StatType>Hits :</StatType> {player.hits}
+          </Stats>
+          <Stats>
+            <StatType>Saves :</StatType> {player.saves}
+          </Stats>
+          <Stats>
+            <StatType>Total:</StatType>{" "}
+            {getPointValueFromAugmentedPlayer(player).toFixed(2)}{" "}
           </Stats>
         </>
       )}
@@ -114,8 +125,8 @@ const PlayerName = styled.p`
 `;
 
 const StatType = styled.span`
-font-family: var(--font-family-graduate);
-`
+  font-family: var(--font-family-graduate);
+`;
 
 const PlayerButton = styled.button`
   font-size: 20px;

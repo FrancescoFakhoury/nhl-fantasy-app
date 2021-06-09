@@ -33,7 +33,8 @@ const EvenBiggerWrapper = styled.div`
 
 const Steps = styled.span`
   font-weight: bold;
-  color: black;
+  color: red;
+  font-family: var(--font-family-graduate);
 `;
 const HowToWrapper = styled.div`
   display: flex;
@@ -55,13 +56,13 @@ const ListItems = styled.li`
   padding: 30px 0px;
   font-family: var(--font-family);
   font-size: 18px;
-  color: red;
+  color: black;
   font-weight: bold;
 `;
 
 const Title = styled.h1`
   color: black;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
 `;
 
 export default HowToPlay;
