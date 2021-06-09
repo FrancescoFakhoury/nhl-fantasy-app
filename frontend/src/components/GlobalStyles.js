@@ -8,7 +8,7 @@ export default createGlobalStyle`
     --red: red;
     --font-family: 'Nanum Gothic', sans-serif;  
     --second-card: RGBA(255,255,255);
-    --darkblue: #0b223e;
+    --darkblue: linear-gradient(90deg, #0b223e 0%, #00436e 100%);
     --font-family-graduate: 'Graduate', sans-serif;
 }
 

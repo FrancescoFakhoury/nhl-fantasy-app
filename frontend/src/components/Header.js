@@ -20,7 +20,7 @@ const Header = () => {
   if (!isAuthenticated) {
     return (
       <Wrapper>
-        <MyStyleButton onClick={handleScrollDown}>Log In</MyStyleButton>
+        {/* <MyStyleButton onClick={handleScrollDown}>Log In</MyStyleButton> */}
       </Wrapper>
     );
   } else {

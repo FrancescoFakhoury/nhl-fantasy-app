@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   margin-top: 50px;
 `;
 const StyledNavLink = styled(NavLink)`
-  font-size: 30px;
+  font-size: 27px;
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -64,7 +64,7 @@ const StyledNavLink = styled(NavLink)`
 
 const Title = styled.h1`
   font-family: var(--font-family-graduate);
-  font-size: 60px;
+  font-size: 50px;
 `;
 
 const Info = styled.p`
@@ -74,7 +74,7 @@ const Info = styled.p`
 `;
 
 const TypeOfInfo = styled.p`
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   font-family: var(--font-family-graduate);
   margin: 0px;

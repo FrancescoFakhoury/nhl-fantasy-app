@@ -87,7 +87,7 @@ const TeamSelectButton = styled.button`
   border-radius: 4px;
   border: solid grey 1px;
   width: fit-content;
-  background-color: var(--darkblue);
+  background: var(--darkblue);
 
   &:hover {
     opacity: 1;
@@ -133,7 +133,7 @@ const TeamWrapper = styled.div`
   align-content: center;
   min-height: 100vh;
   grid-template-columns: repeat(4, 350px);
-  grid-template-rows: minmax(200px, auto) repeat(6, 200px);
+  grid-template-rows: minmax(250px, auto) repeat(6, 250px);
 `;
 
 const TeamNames = styled.button`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
-const Player = ({ player, key, teamId, mode, isAdded }) => {
+const Player = ({ player, teamId, mode, isAdded }) => {
   const { setMyTeam } = useContext(Context);
 
   const isSelectionMode = mode === "player-selection";
@@ -71,30 +71,38 @@ const Player = ({ player, key, teamId, mode, isAdded }) => {
       }
     }
   `;
+
+  console.log(player);
   return (
     <Wrapper>
       {player.key}
       <PlayerName>{player.person.fullName}</PlayerName>
+      {isSelectionMode && <PlayerName>{player.jerseyNumber}</PlayerName>}
       {!isSelectionMode && (
         <>
           <Stats>
-            <StatType>Goals :</StatType> {player.goals}
+            <StatType>Goals :</StatType>
+            <SingleStat>{player.goals}</SingleStat>
           </Stats>
           <Stats>
-            <StatType>Assists :</StatType> {player.assists}
+            <StatType>Assists :</StatType>
+            <SingleStat> {player.assists}</SingleStat>
           </Stats>
           <Stats>
-            <StatType>Shots :</StatType> {player.shots}
+            <StatType>Shots :</StatType> <SingleStat>{player.shots}</SingleStat>
           </Stats>
           <Stats>
-            <StatType>Hits :</StatType> {player.hits}
+            <StatType>Hits :</StatType> <SingleStat> {player.hits}</SingleStat>
           </Stats>
           <Stats>
-            <StatType>Saves :</StatType> {player.saves}
+            <StatType>Saves :</StatType>{" "}
+            <SingleStat> {player.saves}</SingleStat>
           </Stats>
           <Stats>
             <StatType>Total:</StatType>{" "}
-            {getPointValueFromAugmentedPlayer(player).toFixed(2)}{" "}
+            <SingleStat>
+              {getPointValueFromAugmentedPlayer(player).toFixed(2)}
+            </SingleStat>
           </Stats>
         </>
       )}
@@ -123,7 +131,10 @@ const PlayerName = styled.p`
   opacity: 0.87;
   font-weight: bold;
 `;
-
+const SingleStat = styled.span`
+  font-family: var(--font-family-graduate);
+  font-weight: bold;
+`;
 const StatType = styled.span`
   font-family: var(--font-family-graduate);
 `;
