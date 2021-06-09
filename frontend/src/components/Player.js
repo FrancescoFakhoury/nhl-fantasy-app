@@ -1,12 +1,25 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { useSpring, animated, to } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "react-use-gesture";
 import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 
+const calc = (x, y) => [
+  -(y - window.innerHeight / 2) / 20,
+  (x - window.innerWidth / 2) / 20,
+  1.1,
+];
+const trans = (x, y, s) =>
+  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
 const Player = ({ player, teamId, mode, isAdded }) => {
   const { setMyTeam, myTeam } = useContext(Context);
+
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 10, tension: 200, friction: 50 },
+  }));
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -15,12 +28,6 @@ const Player = ({ player, teamId, mode, isAdded }) => {
     console.log("hello", newTeam);
     setMyTeam(newTeam);
   };
-
-  const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }));
-
-  const bind = useDrag(({ down, movement: [mx, my] }) => {
-    api.start({ x: down ? mx : 0, y: down ? my : 0 });
-  });
 
   const isSelectionMode = mode === "player-selection";
 
@@ -69,7 +76,13 @@ const Player = ({ player, teamId, mode, isAdded }) => {
 
   console.log(player);
   return (
-    <animated.div {...bind()} style={{ x, y }}>
+    // <animated.div {...bind()} style={{ x, y }}>
+    <animated.div
+      onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+      onMouseLeave={() => set({ xys: [0, 0, 1] })}
+      style={{ transform: props.xys.to(trans) }}
+
+    >
       <Wrapper>
         {player.key}
         <PlayerName>{player.person.fullName}</PlayerName>
@@ -140,7 +153,7 @@ const Wrapper = styled.div`
   transition: transform 0.5s ease-in-out;
 
   &:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
   }
 `;
 
