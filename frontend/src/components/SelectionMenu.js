@@ -23,7 +23,7 @@ const SelectionMenu = () => {
     return (
       <Wrapper>
         <PlayerSelectText>
-          Please select your players from the desired team bellow:
+          Please select your players from the desired team below:
         </PlayerSelectText>
         <TeamsWrapper>
           {teamsArr.map((team, index) => {
@@ -34,7 +34,7 @@ const SelectionMenu = () => {
                   handleClick(team);
                 }}
               >
-                {team.name}
+                <Name>{team.name}</Name>
               </TeamNames>
             );
           })}
@@ -70,21 +70,22 @@ const SelectionMenu = () => {
 };
 
 const PlayerSelectText = styled.div`
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: black;
   font-family: var(--font-family-graduate);
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
+  width: 40%;
 `;
 
 const TeamSelectButton = styled.button`
   font-size: 40px;
   font-family: var(--font-family-graduate);
   color: white;
-  padding: 3px 10px;
+  padding: 5px 20px;
   margin: 20px;
   opacity: 0.87;
-  border-radius: 4px;
+  border-radius: 8px;
   border: solid grey 1px;
   width: fit-content;
   background: var(--darkblue);
@@ -136,25 +137,35 @@ const TeamWrapper = styled.div`
   grid-template-rows: minmax(250px, auto) repeat(6, 250px);
 `;
 
-const TeamNames = styled.button`
+const Name = styled.p`
   font-size: 20px;
   font-family: var(--font-family-graduate);
   color: black;
+`;
+
+const TeamNames = styled.button`
+  /* font-size: 20px;
+  font-family: var(--font-family-graduate);
+  color: black; */
   padding: 10px 30px;
   margin: 20px;
   opacity: 0.87;
-  border-radius: 4px;
   border: solid grey 1px;
   background-color: var(--second-card);
   max-width: 250px;
+  box-shadow: 15px 15px 15px -15px;
+  border-radius: 6px;
+  transition: transform 0.5s ease-in-out;
 
   &:hover {
-    color: var(--red);
+    /* color: var(--red); */
     opacity: 1;
     cursor: pointer;
     transform: scale(1.3);
-    position: relative;
-    z-index: 10;
+
+    & ${Name} {
+      color: red;
+    }
   }
 `;
 

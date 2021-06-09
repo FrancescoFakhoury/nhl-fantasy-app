@@ -8,7 +8,7 @@ const Profile = () => {
   console.log("sdjkhgdadkgjhfagkjhfgjhka", user);
   return (
     <Wrapper>
-      <Title>Your Profile Page</Title>
+      <Title>{user.nickname}'s Page</Title>
       <ProfileInfo>
         <ImageWrapper>
           <Image src={user.picture} />
@@ -33,7 +33,7 @@ const Profile = () => {
           </ElemWrapper>
         </InfoWrapper>
       </ProfileInfo>
-      <StyledNavLink to="/team">View your Team</StyledNavLink>
+      <StyledNavLink to="/team">Go to your Team page</StyledNavLink>
     </Wrapper>
   );
 };
@@ -50,15 +50,17 @@ const Wrapper = styled.div`
 const StyledNavLink = styled(NavLink)`
   font-size: 27px;
   text-decoration: none;
-  color: black;
+  color: white;
   font-weight: bold;
   font-family: var(--font-family-graduate);
   padding: 10px;
   opacity: 1;
+  border: solid 1px grey;
+  border-radius: 10px;
+  background: var(--darkblue);
 
   &:hover {
-    color: var(--red);
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
 `;
 
@@ -81,8 +83,8 @@ const TypeOfInfo = styled.p`
 `;
 
 const Image = styled.img`
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   border-radius: 50%;
   border: solid black 6px;
 `;

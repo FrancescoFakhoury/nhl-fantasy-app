@@ -11,11 +11,9 @@ import { GiHockey } from "react-icons/gi";
 const Header = () => {
   const { isAuthenticated, user } = useAuth0();
 
-  console.log(user);
-
-  const handleScrollDown = () => {
-    window.scrollTo(0, document.body.scrollHeight);
-  };
+  // const handleScrollDown = () => {
+  //   window.scrollTo(0, document.body.scrollHeight);
+  // };
 
   if (!isAuthenticated) {
     return (
@@ -114,14 +112,6 @@ const MyStyleButton = styled.button`
   overflow: hidden;
   cursor: pointer;
 `;
-
-// const PagesWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   margin: 0px 20rem;
-//   background-color: var(--first-card);
-//   border-radius: 14px;
-// `;
 
 const NavDiv = styled.div`
   display: flex;

@@ -45,9 +45,9 @@ const Team = () => {
       {myTeam.length > 0 ? (
         <Big3>
           <BigBigWrapper>
-            <PlayerListText>Your Team :</PlayerListText>
+            <PlayerListText>Your Team </PlayerListText>
             <NumberOfPlayers>
-              number of players: {myTeam.length} / 8
+              number of players: <Numbers>{myTeam.length} / 8</Numbers>
             </NumberOfPlayers>
             <BigWrapper>
               {myTeam.map((player) => {
@@ -118,6 +118,10 @@ const ConfirmButton = styled.button`
     z-index: 10;
   }
 `;
+
+const Numbers = styled.span`
+color: red;
+`
 
 const UpdateButton = styled.button`
   font-size: 20px;

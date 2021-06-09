@@ -51,33 +51,12 @@ const Player = ({ player, teamId, mode, isAdded }) => {
     // teamArray.push(goals);
   };
 
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: solid grey 1px;
-    margin: 10px;
-    padding: 10px;
-    background-color: var(--second-card);
-    box-shadow: 15px 15px 15px -15px;
-    border-radius: 6px;
-    width: 300px;
-
-    &:hover {
-      transform: scale(1.1);
-      & ${PlayerName} {
-        color: red;
-      }
-    }
-  `;
-
   console.log(player);
   return (
     <Wrapper>
       {player.key}
       <PlayerName>{player.person.fullName}</PlayerName>
-      {isSelectionMode && <PlayerName>{player.jerseyNumber}</PlayerName>}
+      {isSelectionMode && <PlayerNumber>{player.jerseyNumber}</PlayerNumber>}
       {!isSelectionMode && (
         <>
           <Stats>
@@ -119,9 +98,36 @@ const Player = ({ player, teamId, mode, isAdded }) => {
   );
 };
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid grey 1px;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--second-card);
+  box-shadow: 15px 15px 15px -15px;
+  border-radius: 6px;
+  width: 300px;
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 const Stats = styled.p`
   font-family: var(--font-family);
   text-align: center;
+`;
+
+const PlayerNumber = styled.p`
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: var(--font-family-graduate);
+  opacity: 0.87;
+  font-weight: bold;
 `;
 
 const PlayerName = styled.p`
@@ -141,7 +147,7 @@ const StatType = styled.span`
 
 const PlayerButton = styled.button`
   font-size: 20px;
-  font-family: var(--font-family);
+  font-family: var(--font-family-graduate);
   color: black;
   padding: 3px 10px;
   margin: 20px;
