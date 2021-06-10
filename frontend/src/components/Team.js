@@ -68,9 +68,9 @@ const Team = () => {
               </ActionButtons>
             </ButtonWrapper>
             {isButtonPressed === true ? (
-              <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
+              <TotalPoints> Total Points : <NumberColor>{total.toFixed(2)}</NumberColor> </TotalPoints>
             ) : (
-              <TotalPoints> Total : 0 </TotalPoints>
+              <TotalPoints> Total Points : 0 </TotalPoints>
             )}
           </BigBigWrapper>
         </Big3>
@@ -113,6 +113,10 @@ const NumberOfPlayers = styled.p`
   font-family: var(--font-family-graduate);
   font-size: 30px;
 `;
+
+const NumberColor = styled.span`
+color: red;
+`
 
 const RemoveButton = styled.button`
   font-size: 20px;
@@ -184,7 +188,7 @@ const Big3 = styled.div`
 const TotalPoints = styled.p`
   margin: 0;
   font-family: var(--font-family-graduate);
-  font-size: 30px;
+  font-size: 50px;
 `;
 
 const BigWrapper = styled.div`
