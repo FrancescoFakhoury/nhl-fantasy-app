@@ -8,8 +8,6 @@ const Team = () => {
   const { myTeam, setMyTeam, isButtonPressed, setIsButtonPressed } =
     useContext(Context);
 
-  
-
   const handlePost = () => {
     const data = myTeam;
     setIsButtonPressed(false);
@@ -30,9 +28,13 @@ const Team = () => {
     setIsButtonPressed(true);
   };
 
+  const handleDelete = () => {
+    setMyTeam([]);
+  };
+
   let total = 0;
 
-  console.log(isButtonPressed)
+  console.log(isButtonPressed);
 
   return (
     <>
@@ -50,44 +52,69 @@ const Team = () => {
                 return (
                   <Wrapper>
                     <Player player={player} mode="team-view" />
-                    
                   </Wrapper>
                 );
               })}
             </BigWrapper>
             <ButtonWrapper>
-              <ConfirmButton onClick={handlePost}>
+              <ActionButtons onClick={handleDelete}>
+                Remove All Players
+              </ActionButtons>
+              <ActionButtons onClick={handlePost}>
                 Confirm your team
-              </ConfirmButton>
-              <UpdateButton onClick={handlePoints}>
-                Update your total points
-              </UpdateButton>
-              {isButtonPressed === true ? (
-                <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
-              ) : (
-                <TotalPoints> Total : 0 </TotalPoints>
-              )}
+              </ActionButtons>
+              <ActionButtons onClick={handlePoints}>
+                Update your points
+              </ActionButtons>
             </ButtonWrapper>
+            {isButtonPressed === true ? (
+              <TotalPoints> Total : {total.toFixed(2)} </TotalPoints>
+            ) : (
+              <TotalPoints> Total : 0 </TotalPoints>
+            )}
           </BigBigWrapper>
         </Big3>
       ) : (
-        <EmptyWrapper>
-          <Message>
-            Your team is empty, please select some players to begin your fantasy
-            journey
-          </Message>
-        </EmptyWrapper>
+        <EvenBiggerWrapper>
+          <MessageWrapper>
+            <Message>
+              Your team is empty, please select some players to begin your
+              fantasy journey
+            </Message>
+          </MessageWrapper>
+        </EvenBiggerWrapper>
       )}
     </>
   );
 };
+
+const EvenBiggerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  height: 100vh;
+`;
+
+const MessageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  width: fit-content;
+  border: solid 1px grey;
+  height: fit-content;
+  box-shadow: 20px 20px 20px -20px;
+  padding: 0px 30px;
+`;
 
 const NumberOfPlayers = styled.p`
   font-family: var(--font-family-graduate);
   font-size: 30px;
 `;
 
-const ConfirmButton = styled.button`
+const RemoveButton = styled.button`
   font-size: 20px;
   font-family: var(--font-family-graduate);
   color: black;
@@ -104,36 +131,37 @@ const ConfirmButton = styled.button`
     transform: scale(1.1);
     position: relative;
     z-index: 10;
+  }
+`;
+
+const ActionButtons = styled.button`
+  font-size: 30px;
+  font-family: var(--font-family-graduate);
+  color: white;
+  padding: 5px 20px;
+  margin: 20px;
+  opacity: 0.87;
+  border-radius: 8px;
+  border: solid grey 1px;
+  width: fit-content;
+  background: var(--darkblue);
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.2);
   }
 `;
 
 const Numbers = styled.span`
-color: red;
-`
-
-const UpdateButton = styled.button`
-  font-size: 20px;
-  font-family: var(--font-family-graduate);
-  color: black;
-  padding: 3px 10px;
-  margin: 20px;
-  opacity: 0.87;
-  border-radius: 4px;
-  border: solid grey 1px;
-
-  &:hover {
-    color: var(--red);
-    opacity: 1;
-    cursor: pointer;
-    transform: scale(1.1);
-    position: relative;
-    z-index: 10;
-  }
+  color: red;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
   gap: 4rem;
   margin-top: 5rem;
   text-align: center;
@@ -175,23 +203,14 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-
-
-const EmptyWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: fill-available;
-  height: 100vh;
-`;
-
 const Message = styled.p`
   font-size: 40px;
   font-weight: bold;
   text-align: center;
-  margin-left: 2rem;
   color: black;
   width: 600px;
+  margin: 0;
+  padding: 80px;
 `;
 
 export default Team;

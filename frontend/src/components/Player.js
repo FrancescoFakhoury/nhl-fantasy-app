@@ -4,22 +4,27 @@ import { useDrag } from "react-use-gesture";
 import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
-
-const calc = (x, y) => [
-  -(y - window.innerHeight / 2) / 20,
-  (x - window.innerWidth / 2) / 20,
-  1.1,
-];
-const trans = (x, y, s) =>
-  `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+import { use3dEffect } from "use-3d-effect";
 
 const Player = ({ player, teamId, mode, isAdded }) => {
   const { setMyTeam, myTeam } = useContext(Context);
 
-  const [props, set] = useSpring(() => ({
-    xys: [0, 0, 1],
-    config: { mass: 10, tension: 200, friction: 50 },
-  }));
+  // const calc = (x, y) => [
+  //   -(y - window.innerHeight / 2) / 40,
+  //   (x - window.innerWidth / 2) / 40,
+  //   1.1,
+  // ];
+
+  // const trans = (x, y, s) =>
+  //   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
+  // const [props, set] = useSpring(() => ({
+  //   xys: [0, 0, 1],
+  //   config: { mass: 10, tension: 200, friction: 50 },
+  // }));
+
+  const ref = React.useRef(null);
+  const { style, ...mouseHandlers } = use3dEffect(ref);
 
   const handleClick = (player) => {
     const newTeam = [...myTeam];
@@ -35,10 +40,6 @@ const Player = ({ player, teamId, mode, isAdded }) => {
     const promise1 = fetch(
       `https://statsapi.web.nhl.com/api/v1/people/${player.person.id}/stats?stats=statsSingleSeason&season=20202021`
     ).then((res) => res.json());
-    // .then((json) => {
-    //   setSinglePlayer(json.stats[0].splits[0].stat);
-    // });
-    console.log("smokey", teamId);
     const promise2 = fetch(
       `https://statsapi.web.nhl.com/api/v1/teams/${teamId}/roster`
     ).then((res) => res.json());
@@ -68,20 +69,18 @@ const Player = ({ player, teamId, mode, isAdded }) => {
         return newList;
       });
     });
-
-    // const goals = singlePlayer.stat.goals;
-    // console.log(goals);
-    // teamArray.push(goals);
   };
 
-  console.log(player);
   return (
-    // <animated.div {...bind()} style={{ x, y }}>
     <animated.div
-      onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-      onMouseLeave={() => set({ xys: [0, 0, 1] })}
-      style={{ transform: props.xys.to(trans) }}
-
+      // onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+      // onMouseLeave={() => set({ xys: [0, 0, 1] })}
+      // style={{ transform: props.xys.to(trans) }}
+      ref={ref}
+      style={{
+        ...style,
+      }}
+      {...mouseHandlers}
     >
       <Wrapper>
         {player.key}

@@ -89,6 +89,7 @@ const TeamSelectButton = styled.button`
   border: solid grey 1px;
   width: fit-content;
   background: var(--darkblue);
+  transition: transform 0.5s ease-in-out;
 
   &:hover {
     opacity: 1;
