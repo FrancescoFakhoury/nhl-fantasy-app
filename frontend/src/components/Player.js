@@ -90,7 +90,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
           <>
             <Stats>
               <StatType>Goals :</StatType>
-              <SingleStat>{player.goals}</SingleStat>
+              <SingleStat> {player.goals}</SingleStat>
             </Stats>
             <Stats>
               <StatType>Assists :</StatType>
@@ -98,7 +98,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
             </Stats>
             <Stats>
               <StatType>Shots :</StatType>{" "}
-              <SingleStat>{player.shots}</SingleStat>
+              <SingleStat> {player.shots}</SingleStat>
             </Stats>
             <Stats>
               <StatType>Hits :</StatType>{" "}
