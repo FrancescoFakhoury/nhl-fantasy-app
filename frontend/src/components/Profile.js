@@ -31,7 +31,7 @@ const Profile = () => {
           </ElemWrapper>
 
           <ElemWrapper>
-            <TypeOfInfo>Updated at:</TypeOfInfo>
+            <TypeOfInfo>Last Updated:</TypeOfInfo>
             <Info>{format(new Date(user.updated_at), "Pp")}</Info>
           </ElemWrapper>
         </InfoWrapper>

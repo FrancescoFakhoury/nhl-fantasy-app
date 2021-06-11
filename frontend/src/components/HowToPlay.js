@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import image from "../assets/net.jpg";
 
 const HowToPlay = () => {
   return (
@@ -29,6 +30,10 @@ const EvenBiggerWrapper = styled.div`
   align-items: center;
   margin-top: 5rem;
   height: 100vh;
+  background: url(${image});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const Steps = styled.span`
