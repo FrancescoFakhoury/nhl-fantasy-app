@@ -71,6 +71,8 @@ const Player = ({ player, teamId, mode, isAdded }) => {
     });
   };
 
+  console.log(myTeam);
+
   return (
     <animated.div
       // onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
@@ -124,7 +126,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
             </RemoveButton>
           </>
         )}
-        {isSelectionMode && !isAdded && (
+        {isSelectionMode && !isAdded && myTeam.length < 8 && (
           <PlayerButton
             onClick={() => {
               handleFetch(player);
@@ -132,6 +134,9 @@ const Player = ({ player, teamId, mode, isAdded }) => {
           >
             Add to Team
           </PlayerButton>
+        )}
+        {isSelectionMode && !isAdded && myTeam.length === 8 && (
+          <DisabledPlayerButton disabled>Add to Team</DisabledPlayerButton>
         )}
       </Wrapper>
     </animated.div>
@@ -214,6 +219,17 @@ const SingleStat = styled.span`
 `;
 const StatType = styled.span`
   font-family: var(--font-family-graduate);
+`;
+
+const DisabledPlayerButton = styled.button`
+  font-size: 20px;
+  font-family: var(--font-family-graduate);
+  color: black;
+  padding: 3px 10px;
+  margin: 20px;
+  border-radius: 4px;
+  border: solid 2px;
+  border-color: linear-gradient(90deg, #0b223e 0%, #00436e 100%);
 `;
 
 const PlayerButton = styled.button`
