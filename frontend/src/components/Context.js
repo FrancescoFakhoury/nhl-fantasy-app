@@ -32,7 +32,7 @@ export const ContextProvider = ({ children }) => {
         myTeam,
         setMyTeam,
         isButtonPressed,
-        setIsButtonPressed
+        setIsButtonPressed,
       }}
     >
       {children}

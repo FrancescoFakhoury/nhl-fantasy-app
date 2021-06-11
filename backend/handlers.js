@@ -56,18 +56,4 @@ const handleUpdate = async (req, res) => {
     const db = client.db("Fantasy-team");
 }
 
-// const deletePlayer = async (req, res) => {
-//   const client = await MongoClient(MONGO_URI, options);
-//   const { id } = req.params;
-
-//   await client.connect();
-//   console.log("connected");
-
-//   const db = client.db("Fantasy-team");
-
-//   const array = await db.collection("Teams").remove({})
-  
-//   array.
-//   }
-
 module.exports = { handlePost, getTeam, handleUpdate };
