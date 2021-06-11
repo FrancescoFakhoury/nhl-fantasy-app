@@ -30,6 +30,18 @@ const Team = () => {
 
   const handleDelete = () => {
     setMyTeam([]);
+    const data = myTeam;
+    fetch("/api/delete-team", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      });
   };
 
   let total = 0;
@@ -68,7 +80,12 @@ const Team = () => {
               </ActionButtons>
             </ButtonWrapper>
             {isButtonPressed === true ? (
-              <TotalPoints> Total Points : <NumberColor>{total.toFixed(2)}</NumberColor> </TotalPoints>
+              <TotalPoints>
+                {" "}
+                Total Points : <NumberColor>
+                  {total.toFixed(2)}
+                </NumberColor>{" "}
+              </TotalPoints>
             ) : (
               <TotalPoints> Total Points : 0 </TotalPoints>
             )}
@@ -115,8 +132,8 @@ const NumberOfPlayers = styled.p`
 `;
 
 const NumberColor = styled.span`
-color: red;
-`
+  color: red;
+`;
 
 const RemoveButton = styled.button`
   font-size: 20px;
