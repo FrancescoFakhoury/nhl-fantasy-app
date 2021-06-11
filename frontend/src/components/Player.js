@@ -86,6 +86,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
         {player.key}
         <PlayerName>{player.person.fullName}</PlayerName>
         {isSelectionMode && <PlayerNumber>{player.jerseyNumber}</PlayerNumber>}
+        {isSelectionMode && isAdded && <AddedPlayer>Player Added!</AddedPlayer>}
         {!isSelectionMode && (
           <>
             <Stats>
@@ -137,6 +138,17 @@ const Player = ({ player, teamId, mode, isAdded }) => {
   );
 };
 
+const AddedPlayer = styled.button`
+  font-size: 20px;
+  font-family: var(--font-family-graduate);
+  color: red;
+  padding: 3px 10px;
+  margin: 20px;
+  border-radius: 4px;
+  border: solid 2px;
+  border-color: red;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -162,9 +174,9 @@ const RemoveButton = styled.button`
   color: black;
   padding: 3px 10px;
   margin: 20px;
-  opacity: 0.87;
   border-radius: 4px;
-  border: solid grey 1px;
+  border: solid 2px;
+  border-color: linear-gradient(90deg, #0b223e 0%, #00436e 100%);
 
   &:hover {
     color: var(--red);
@@ -210,9 +222,9 @@ const PlayerButton = styled.button`
   color: black;
   padding: 3px 10px;
   margin: 20px;
-  opacity: 0.87;
   border-radius: 4px;
-  border: solid grey 1px;
+  border: solid 2px;
+  border-color: linear-gradient(90deg, #0b223e 0%, #00436e 100%);
 
   &:hover {
     color: var(--red);
