@@ -135,26 +135,6 @@ const NumberColor = styled.span`
   color: red;
 `;
 
-const RemoveButton = styled.button`
-  font-size: 20px;
-  font-family: var(--font-family-graduate);
-  color: black;
-  padding: 3px 10px;
-  margin: 20px;
-  opacity: 0.87;
-  border-radius: 4px;
-  border: solid grey 1px;
-
-  &:hover {
-    color: var(--red);
-    opacity: 1;
-    cursor: pointer;
-    transform: scale(1.1);
-    position: relative;
-    z-index: 10;
-  }
-`;
-
 const ActionButtons = styled.button`
   font-size: 30px;
   font-family: var(--font-family-graduate);
@@ -216,7 +196,8 @@ const BigWrapper = styled.div`
 
 const PlayerListText = styled.p`
   font-family: var(--font-family-graduate);
-  font-size: 40px;
+  font-size: 50px;
+  margin: 30px 0 0 0;
 `;
 
 const Wrapper = styled.div`
