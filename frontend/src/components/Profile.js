@@ -2,16 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink } from "react-router-dom";
+import image from "../assets/stanley-cup.jpg";
+import { format } from "date-fns";
 
 const Profile = () => {
   const { user } = useAuth0();
   console.log("sdjkhgdadkgjhfagkjhfgjhka", user);
+
   return (
     <Wrapper>
       <Title>{user.nickname}'s Page</Title>
       <ProfileInfo>
         <ImageWrapper>
-          <Image src={user.picture} />
+          <Image src={image} />
         </ImageWrapper>
         <InfoWrapper>
           <ElemWrapper>
@@ -29,7 +32,7 @@ const Profile = () => {
 
           <ElemWrapper>
             <TypeOfInfo>Updated at:</TypeOfInfo>
-            <Info>{user.updated_at}</Info>
+            <Info>{format(new Date(user.updated_at), "Pp")}</Info>
           </ElemWrapper>
         </InfoWrapper>
       </ProfileInfo>
@@ -86,7 +89,7 @@ const Image = styled.img`
   height: 300px;
   width: 300px;
   border-radius: 50%;
-  border: solid black 6px;
+  border: solid #1c1e21 5px;
 `;
 const ElemWrapper = styled.div`
   display: flex;
