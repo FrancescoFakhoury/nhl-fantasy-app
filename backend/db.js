@@ -1,8 +1,6 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-// const MONGO_URI =
-//   "mongodb+srv://dbUser:deniro08@cluster0.vupqp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const { MONGO_URI } = process.env;
 const DB_NAME = "Fantasy-team";
 let db;
