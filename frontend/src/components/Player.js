@@ -23,7 +23,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
   //   config: { mass: 10, tension: 200, friction: 50 },
   // }));
 
-  const ref = React.useRef(null);
+  const ref = useRef(null);
   const { style, ...mouseHandlers } = use3dEffect(ref);
 
   const handleClick = (player) => {
@@ -167,10 +167,6 @@ const Wrapper = styled.div`
   border-radius: 6px;
   width: 300px;
   transition: transform 0.5s ease-in-out;
-
-  &:hover {
-    /* transform: scale(1.1); */
-  }
 `;
 
 const RemoveButton = styled.button`
@@ -249,9 +245,6 @@ const PlayerButton = styled.button`
     transform: scale(1.1);
     position: relative;
     z-index: 10;
-  }
-
-  &:active {
   }
 `;
 

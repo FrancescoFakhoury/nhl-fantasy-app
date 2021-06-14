@@ -207,12 +207,12 @@ const Wrapper = styled.div`
 
 const Message = styled.p`
   font-size: 40px;
-  font-weight: bold;
   text-align: center;
   color: black;
-  width: 600px;
+  width: 800px;
   margin: 0;
   padding: 80px;
+  font-family: var(--font-family-graduate);
 `;
 
 export default Team;

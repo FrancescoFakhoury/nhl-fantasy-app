@@ -7,7 +7,6 @@ import { format } from "date-fns";
 
 const Profile = () => {
   const { user } = useAuth0();
-  console.log("sdjkhgdadkgjhfagkjhfgjhka", user);
 
   return (
     <Wrapper>
