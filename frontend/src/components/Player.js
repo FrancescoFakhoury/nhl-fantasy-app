@@ -1,10 +1,11 @@
 import React, { useContext, useRef, useEffect } from "react";
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, to } from "@react-spring/web";
 import { useDrag } from "react-use-gesture";
 import styled from "styled-components";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
 import { Context } from "./Context";
 import { use3dEffect } from "use-3d-effect";
+import { useGesture } from "react-use-gesture";
 
 const Player = ({ player, teamId, mode, isAdded }) => {
   const { setMyTeam, myTeam } = useContext(Context);
@@ -16,7 +17,7 @@ const Player = ({ player, teamId, mode, isAdded }) => {
   // ];
 
   // const trans = (x, y, s) =>
-  //   `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+  //   `perspective(900px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
   // const [props, set] = useSpring(() => ({
   //   xys: [0, 0, 1],
@@ -74,74 +75,87 @@ const Player = ({ player, teamId, mode, isAdded }) => {
   console.log(myTeam);
 
   return (
-    <animated.div
-      // onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-      // onMouseLeave={() => set({ xys: [0, 0, 1] })}
-      // style={{ transform: props.xys.to(trans) }}
-      ref={ref}
-      style={{
-        ...style,
-      }}
-      {...mouseHandlers}
-    >
-      <Wrapper>
-        {player.key}
-        <PlayerName>{player.person.fullName}</PlayerName>
-        {isSelectionMode && <PlayerNumber>{player.jerseyNumber}</PlayerNumber>}
-        {isSelectionMode && isAdded && <AddedPlayer>Player Added!</AddedPlayer>}
-        {!isSelectionMode && (
-          <>
-            <Stats>
-              <StatType>Goals :</StatType>
-              <SingleStat> {player.goals}</SingleStat>
-            </Stats>
-            <Stats>
-              <StatType>Assists :</StatType>
-              <SingleStat> {player.assists}</SingleStat>
-            </Stats>
-            <Stats>
-              <StatType>Shots :</StatType>{" "}
-              <SingleStat> {player.shots}</SingleStat>
-            </Stats>
-            <Stats>
-              <StatType>Hits :</StatType>{" "}
-              <SingleStat> {player.hits}</SingleStat>
-            </Stats>
-            <Stats>
-              <StatType>Saves :</StatType>{" "}
-              <SingleStat> {player.saves}</SingleStat>
-            </Stats>
-            <Stats>
-              <StatType>Total:</StatType>{" "}
-              <SingleStat>
-                {getPointValueFromAugmentedPlayer(player).toFixed(2)}
-              </SingleStat>
-            </Stats>
-            <RemoveButton
+    <Container>
+      <animated.div
+        // onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+        // onMouseLeave={() => set({ xys: [0, 0, 1] })}
+        // style={{ transform: props.xys.to(trans) }}
+        ref={ref}
+        style={{
+          ...style,
+        }}
+        {...mouseHandlers}
+      >
+        <Wrapper>
+          {player.key}
+          <PlayerName>{player.person.fullName}</PlayerName>
+          {isSelectionMode && (
+            <PlayerNumber>{player.jerseyNumber}</PlayerNumber>
+          )}
+          {isSelectionMode && isAdded && (
+            <AddedPlayer>Player Added!</AddedPlayer>
+          )}
+          {!isSelectionMode && (
+            <>
+              <Stats>
+                <StatType>Goals :</StatType>
+                <SingleStat> {player.goals}</SingleStat>
+              </Stats>
+              <Stats>
+                <StatType>Assists :</StatType>
+                <SingleStat> {player.assists}</SingleStat>
+              </Stats>
+              <Stats>
+                <StatType>Shots :</StatType>{" "}
+                <SingleStat> {player.shots}</SingleStat>
+              </Stats>
+              <Stats>
+                <StatType>Hits :</StatType>{" "}
+                <SingleStat> {player.hits}</SingleStat>
+              </Stats>
+              <Stats>
+                <StatType>Saves :</StatType>{" "}
+                <SingleStat> {player.saves}</SingleStat>
+              </Stats>
+              <Stats>
+                <StatType>Total:</StatType>{" "}
+                <SingleStat>
+                  {getPointValueFromAugmentedPlayer(player).toFixed(2)}
+                </SingleStat>
+              </Stats>
+              <RemoveButton
+                onClick={() => {
+                  handleClick(player);
+                }}
+              >
+                remove
+              </RemoveButton>
+            </>
+          )}
+          {isSelectionMode && !isAdded && myTeam.length < 8 && (
+            <PlayerButton
               onClick={() => {
-                handleClick(player);
+                handleFetch(player);
               }}
             >
-              remove
-            </RemoveButton>
-          </>
-        )}
-        {isSelectionMode && !isAdded && myTeam.length < 8 && (
-          <PlayerButton
-            onClick={() => {
-              handleFetch(player);
-            }}
-          >
-            Add to Team
-          </PlayerButton>
-        )}
-        {isSelectionMode && !isAdded && myTeam.length === 8 && (
-          <DisabledPlayerButton disabled>Add to Team</DisabledPlayerButton>
-        )}
-      </Wrapper>
-    </animated.div>
+              Add to Team
+            </PlayerButton>
+          )}
+          {isSelectionMode && !isAdded && myTeam.length === 8 && (
+            <DisabledPlayerButton disabled>Add to Team</DisabledPlayerButton>
+          )}
+        </Wrapper>
+      </animated.div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
 
 const AddedPlayer = styled.button`
   font-size: 20px;

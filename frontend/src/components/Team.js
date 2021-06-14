@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Context } from "./Context";
 import Player from "./Player";
 import { getPointValueFromAugmentedPlayer } from "../helpers";
+import image from "../assets/ice.jpg";
 
 const Team = () => {
   const { myTeam, setMyTeam, isButtonPressed, setIsButtonPressed } =
@@ -95,8 +96,8 @@ const Team = () => {
         <EvenBiggerWrapper>
           <MessageWrapper>
             <Message>
-              Your team is empty, please select some players to begin your
-              fantasy journey
+              Your team is <ColorSpan>empty</ColorSpan>, please select some
+              players to begin your fantasy journey
             </Message>
           </MessageWrapper>
         </EvenBiggerWrapper>
@@ -105,12 +106,20 @@ const Team = () => {
   );
 };
 
+const ColorSpan = styled.span`
+  color: red;
+`;
+
 const EvenBiggerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 5rem;
   height: 100vh;
+  background: url(${image});
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const MessageWrapper = styled.div`

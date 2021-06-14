@@ -60,7 +60,7 @@ const List = styled.ul`
 const ListItems = styled.li`
   padding: 30px 0px;
   font-family: var(--font-family);
-  font-size: 18px;
+  font-size: 20px;
   color: black;
   font-weight: bold;
 `;
