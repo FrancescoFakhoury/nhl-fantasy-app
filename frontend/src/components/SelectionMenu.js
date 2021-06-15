@@ -23,7 +23,7 @@ const SelectionMenu = () => {
     return (
       <Wrapper>
         <PlayerSelectText>
-          Please select your players from the desired team below:
+          Please select your players from the desired teams below:
         </PlayerSelectText>
         <TeamsWrapper>
           {teamsArr.map((team, index) => {
