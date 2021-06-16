@@ -135,7 +135,7 @@ const TeamWrapper = styled.div`
   align-content: center;
   min-height: 100vh;
   grid-template-columns: repeat(4, 350px);
-  grid-template-rows: minmax(250px, auto) repeat(6, 250px);
+  grid-template-rows: minmax(250px, auto) repeat(6, 350px);
 `;
 
 const Name = styled.p`

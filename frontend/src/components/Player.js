@@ -90,7 +90,10 @@ const Player = ({ player, teamId, mode, isAdded }) => {
           {player.key}
           <PlayerName>{player.person.fullName}</PlayerName>
           {isSelectionMode && (
-            <PlayerNumber>{player.jerseyNumber}</PlayerNumber>
+            <>
+              <PlayerNumber>{player.jerseyNumber}</PlayerNumber>
+              <PlayerNumber>{player.position.abbreviation}</PlayerNumber>
+            </>
           )}
           {isSelectionMode && isAdded && (
             <AddedPlayer>Player Added!</AddedPlayer>
