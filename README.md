@@ -95,6 +95,6 @@ IMPORTANT: currently, my POST is actually also doing a update to the team itself
 
 ## Contributions
 
-Contributions as previously mentioned is encouraged and I take constructive criticism extremely as. I am determined to become a far better coder than I am currently and I am confident that I can learn a lot through helpful contributions and pull requests. 
+Contributions as previously mentioned is encouraged and I take constructive criticism extremely well as I am determined to become a far better coder than I am currently and I am confident that I can learn a lot through helpful contributions and pull requests. 
 
 Please contact me if you wish to do so. 
